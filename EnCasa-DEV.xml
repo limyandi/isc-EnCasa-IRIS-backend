@@ -1,0 +1,4391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="IRIS" version="26" zv="IRIS for Windows (x86-64) 2019.1 (Build 510U)" ts="2019-09-18 14:44:23">
+<Class name="DAO.BaseDeliveryPickup">
+<Abstract>1</Abstract>
+<TimeChanged>65262,45671.384184</TimeChanged>
+<TimeCreated>65254,60780.221162</TimeCreated>
+
+<Property name="ID">
+<Type>%Integer</Type>
+<Identity>1</Identity>
+</Property>
+
+<Property name="date">
+<Type>%Date</Type>
+</Property>
+
+<Property name="time">
+<Type>%Time</Type>
+</Property>
+
+<Property name="timeTo">
+<Type>%Time</Type>
+</Property>
+
+<Property name="status">
+<Type>%Boolean</Type>
+<InitialExpression>0</InitialExpression>
+</Property>
+
+<Property name="pickupAddress">
+<Type>%String</Type>
+<InitialExpression>"188 Chalmers St"</InitialExpression>
+</Property>
+</Class>
+
+
+<Class name="DAO.Community">
+<Super>%Persistent,%Populate,%JSON.Adaptor</Super>
+<TimeChanged>65272,43486.209878</TimeChanged>
+<TimeCreated>65241,59607.863326</TimeCreated>
+
+<UDLText name="T">
+<Content><![CDATA[
+// TODO: Location and Boundaries
+
+]]></Content>
+</UDLText>
+
+<Parameter name="%JSONIGNOREINVALIDFIELD">
+<Default>1</Default>
+</Parameter>
+
+<Property name="ID">
+<Type>%Integer</Type>
+<Identity>1</Identity>
+</Property>
+
+<Property name="name">
+<Type>%String</Type>
+<Parameter name="POPSPEC" value="City()"/>
+</Property>
+
+<Property name="dispatchCentres">
+<Type>DAO.DispatchCentre</Type>
+<Collection>list</Collection>
+<Parameter name="%JSONINCLUDE" value="outputonly"/>
+<Parameter name="%JSONREFERENCE" value="ID"/>
+</Property>
+
+<Property name="latitude">
+<Type>%Double</Type>
+</Property>
+
+<Property name="longitude">
+<Type>%Double</Type>
+</Property>
+
+<XData name="OnlyDispatchCentres">
+<Data><![CDATA[
+<Mapping xmlns="http://www.intersystems.com/jsonmapping">
+<Property Name="dispatchCentres" Reference="OBJECT"/>
+</Mapping>
+]]></Data>
+</XData>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DataLocation>^DAO.CommunityD</DataLocation>
+<DefaultData>CommunityDefaultData</DefaultData>
+<IdLocation>^DAO.CommunityD</IdLocation>
+<IndexLocation>^DAO.CommunityI</IndexLocation>
+<StreamLocation>^DAO.CommunityS</StreamLocation>
+<ExtentSize>20</ExtentSize>
+<Data name="CommunityDefaultData">
+<Value name="1">
+<Value>%%CLASSNAME</Value>
+</Value>
+<Value name="2">
+<Value>ID</Value>
+</Value>
+<Value name="3">
+<Value>DispatchCentre</Value>
+</Value>
+<Value name="4">
+<Value>Customer</Value>
+</Value>
+<Value name="5">
+<Value>Driver</Value>
+</Value>
+<Value name="6">
+<Value>User</Value>
+</Value>
+<Value name="7">
+<Value>DispatchCentres</Value>
+</Value>
+<Value name="8">
+<Value>dispatchCentres</Value>
+</Value>
+<Value name="9">
+<Value>name</Value>
+</Value>
+<Value name="10">
+<Value>latitude</Value>
+</Value>
+<Value name="11">
+<Value>longitude</Value>
+</Value>
+</Data>
+<Property name="%%CLASSNAME">
+<Selectivity>100.0000%</Selectivity>
+<AverageFieldSize>1</AverageFieldSize>
+</Property>
+<Property name="%%ID">
+<Selectivity>1</Selectivity>
+<AverageFieldSize>1.55</AverageFieldSize>
+</Property>
+<Property name="Customer">
+<Selectivity>16.6667%</Selectivity>
+<AverageFieldSize>2</AverageFieldSize>
+</Property>
+<Property name="DispatchCentre">
+<Selectivity>100.0000%</Selectivity>
+<AverageFieldSize>1</AverageFieldSize>
+</Property>
+<Property name="DispatchCentres">
+<Selectivity>5.8824%</Selectivity>
+<AverageFieldSize>29.4</AverageFieldSize>
+</Property>
+<Property name="Driver">
+<Selectivity>100.0000%</Selectivity>
+<AverageFieldSize>1</AverageFieldSize>
+</Property>
+<Property name="ID">
+<Selectivity>1</Selectivity>
+<AverageFieldSize>1.55</AverageFieldSize>
+</Property>
+<Property name="User">
+<Selectivity>100.0000%</Selectivity>
+<AverageFieldSize>1</AverageFieldSize>
+</Property>
+<Property name="dispatchCentres">
+<Selectivity>5.0000%</Selectivity>
+<AverageFieldSize>32.25</AverageFieldSize>
+</Property>
+<Property name="name">
+<Selectivity>7.6923%</Selectivity>
+<AverageFieldSize>8.55</AverageFieldSize>
+</Property>
+<SQLMap name="IDKEY">
+<BlockCount>-4</BlockCount>
+</SQLMap>
+</Storage>
+</Class>
+
+
+<Class name="DAO.Delivery">
+<Super>%Persistent,%JSON.Adaptor,%Populate,Utils.ObjectGenerator,BaseDeliveryPickup</Super>
+<TimeChanged>65272,54997.042946</TimeChanged>
+<TimeCreated>65244,36959.101577</TimeCreated>
+
+<Property name="customer">
+<Type>DAO.User</Type>
+<Cardinality>one</Cardinality>
+<Inverse>deliveries</Inverse>
+<Relationship>1</Relationship>
+</Property>
+
+<Property name="deliveryAddress">
+<Type>%String</Type>
+<Parameter name="POPSPEC" value="Street()"/>
+</Property>
+
+<Method name="GetDeliveryFromJSON">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>data</FormalSpec>
+<Implementation><![CDATA[
+	
+	set delivery = ##class(DAO.Delivery).%New()
+	
+	do delivery.%JSONImport(data)
+	
+	set delivery.customer = ##class(DAO.User).%OpenId(data.customerId)
+	
+	return delivery
+]]></Implementation>
+</Method>
+
+<Method name="GetUnassignedDeliveries">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>userId</FormalSpec>
+<Implementation><![CDATA[
+	set deliveries = []
+	#SQLCompile Select=Display
+	&sql(declare EC2 cursor for select ID, customer->name, customer->email, "date", "time", timeTo, deliveryAddress, pickupAddress into 
+			:id, :customer, :customerEmail, :date, :time, :timeTo, :deliveryAddress, :pickupAddress from DAO.Delivery 
+			where status=0 and customer != :userId and "date" >= cast(GETDATE() as date))
+	&sql(open EC2)
+	for {
+		&sql(fetch EC2)
+		quit:(SQLCODE '= 0)
+		set delivery = {}
+		set delivery.ID = id, delivery.customerName = customer, delivery.customerEmail = customerEmail, 
+		delivery.date = date, delivery.time = time, delivery.timeTo = timeTo, 
+		delivery.deliveryAddress = deliveryAddress, delivery.pickupAddress = pickupAddress
+		do deliveries.%Push(delivery)
+	}
+	return deliveries
+]]></Implementation>
+</Method>
+
+<Method name="CreateDeliveryMonitoringService">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>delivery</FormalSpec>
+<Implementation><![CDATA[
+	Set tSC = ##class(Ens.Director).CreateBusinessService("MonitorAddedDelivery",.tService)
+	If ($IsObject(tService)) {
+		set notificationRequest = ##class(Messages.NotificationRequest).%New()
+		set notificationRequest.ID = delivery.%Id(), notificationRequest.type = "Delivery"
+  		Set tSC = tService.ProcessInput(notificationRequest,.output)
+	}
+	
+	return tSC
+]]></Implementation>
+</Method>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DataLocation>^DAO.DeliveryD</DataLocation>
+<DefaultData>DeliveryDefaultData</DefaultData>
+<IdLocation>^DAO.DeliveryD</IdLocation>
+<IndexLocation>^DAO.DeliveryI</IndexLocation>
+<StreamLocation>^DAO.DeliveryS</StreamLocation>
+<ExtentSize>20</ExtentSize>
+<Data name="DeliveryDefaultData">
+<Value name="1">
+<Value>%%CLASSNAME</Value>
+</Value>
+<Value name="2">
+<Value>Customer</Value>
+</Value>
+<Value name="3">
+<Value>Fromaddress</Value>
+</Value>
+<Value name="4">
+<Value>Pickuplocation</Value>
+</Value>
+<Value name="5">
+<Value>Status</Value>
+</Value>
+<Value name="6">
+<Value>Date</Value>
+</Value>
+<Value name="7">
+<Value>Time</Value>
+</Value>
+<Value name="8">
+<Value>customer</Value>
+</Value>
+<Value name="9">
+<Value>date</Value>
+</Value>
+<Value name="10">
+<Value>time</Value>
+</Value>
+<Value name="11">
+<Value>fromAddress</Value>
+</Value>
+<Value name="12">
+<Value>pickupLocation</Value>
+</Value>
+<Value name="13">
+<Value>status</Value>
+</Value>
+<Value name="14">
+<Value>timeTo</Value>
+</Value>
+<Value name="15">
+<Value>pickupAddress</Value>
+</Value>
+<Value name="16">
+<Value>deliveryAddress</Value>
+</Value>
+</Data>
+<Property name="%%CLASSNAME">
+<Selectivity>100.0000%</Selectivity>
+<AverageFieldSize>1</AverageFieldSize>
+</Property>
+<Property name="%%ID">
+<Selectivity>1</Selectivity>
+<AverageFieldSize>1.55</AverageFieldSize>
+</Property>
+<Property name="Customer">
+<Selectivity>6.2500%</Selectivity>
+<AverageFieldSize>1.65</AverageFieldSize>
+</Property>
+<Property name="Date">
+<Selectivity>5.0000%</Selectivity>
+<AverageFieldSize>5</AverageFieldSize>
+</Property>
+<Property name="Fromaddress">
+<Selectivity>5.0000%</Selectivity>
+<AverageFieldSize>4.8</AverageFieldSize>
+</Property>
+<Property name="ID">
+<Selectivity>1</Selectivity>
+<AverageFieldSize>1.55</AverageFieldSize>
+</Property>
+<Property name="Pickuplocation">
+<Selectivity>5.0000%</Selectivity>
+<AverageFieldSize>4.85</AverageFieldSize>
+</Property>
+<Property name="Status">
+<Selectivity>50.0000%</Selectivity>
+<AverageFieldSize>1</AverageFieldSize>
+</Property>
+<Property name="Time">
+<Selectivity>5.0000%</Selectivity>
+<AverageFieldSize>4.8</AverageFieldSize>
+</Property>
+<Property name="customer">
+<Selectivity>7.6923%</Selectivity>
+<AverageFieldSize>1.5</AverageFieldSize>
+</Property>
+<Property name="date">
+<Selectivity>5.0000%</Selectivity>
+<AverageFieldSize>5</AverageFieldSize>
+</Property>
+<Property name="deliveryAddress">
+<Selectivity>5.0000%</Selectivity>
+<AverageFieldSize>17.15</AverageFieldSize>
+</Property>
+<Property name="deliveryID">
+<Selectivity>1</Selectivity>
+<AverageFieldSize>1.55</AverageFieldSize>
+</Property>
+<Property name="fromAddress">
+<Selectivity>5.0000%</Selectivity>
+<AverageFieldSize>4.9</AverageFieldSize>
+</Property>
+<Property name="pickupAddress">
+<Selectivity>100.0000%</Selectivity>
+<AverageFieldSize>15</AverageFieldSize>
+</Property>
+<Property name="pickupLocation">
+<Selectivity>5.0000%</Selectivity>
+<AverageFieldSize>4.9</AverageFieldSize>
+</Property>
+<Property name="status">
+<Selectivity>100.0000%</Selectivity>
+<AverageFieldSize>1</AverageFieldSize>
+</Property>
+<Property name="time">
+<Selectivity>5.0000%</Selectivity>
+<AverageFieldSize>4.7</AverageFieldSize>
+</Property>
+<Property name="timeTo">
+<Selectivity>5.0000%</Selectivity>
+<AverageFieldSize>4.95</AverageFieldSize>
+</Property>
+<SQLMap name="CustomerIndex">
+<BlockCount>-4</BlockCount>
+</SQLMap>
+<SQLMap name="IDKEY">
+<BlockCount>-4</BlockCount>
+</SQLMap>
+<SQLMap name="customerIndex">
+<BlockCount>-4</BlockCount>
+</SQLMap>
+</Storage>
+</Class>
+
+
+<Class name="DAO.DispatchCentre">
+<Super>%Persistent,%Populate,%JSON.Adaptor</Super>
+<TimeChanged>65272,54996.894889</TimeChanged>
+<TimeCreated>65241,59627.122384</TimeCreated>
+
+<Property name="ID">
+<Type>%Integer</Type>
+<Identity>1</Identity>
+</Property>
+
+<Property name="name">
+<Type>%String</Type>
+<Parameter name="VALUELIST" value="-AUPost-WizMe-Sendle-Officeworks Mailman-EGo-ParcelConnect"/>
+</Property>
+
+<Property name="address">
+<Type>%String</Type>
+</Property>
+
+<Property name="openHours">
+<Type>Helper.Availabilities</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DataLocation>^DAO.DispatchCentreD</DataLocation>
+<DefaultData>DispatchCentreDefaultData</DefaultData>
+<IdLocation>^DAO.DispatchCentreD</IdLocation>
+<IndexLocation>^DAO.DispatchCentreI</IndexLocation>
+<StreamLocation>^DAO.DispatchCentreS</StreamLocation>
+<ExtentSize>20</ExtentSize>
+<Data name="DispatchCentreDefaultData">
+<Value name="1">
+<Value>%%CLASSNAME</Value>
+</Value>
+<Value name="2">
+<Value>address</Value>
+</Value>
+<Value name="3">
+<Value>openHours</Value>
+</Value>
+<Value name="4">
+<Value>name</Value>
+</Value>
+</Data>
+<Property name="%%CLASSNAME">
+<Selectivity>100.0000%</Selectivity>
+<AverageFieldSize>1</AverageFieldSize>
+</Property>
+<Property name="%%ID">
+<Selectivity>1</Selectivity>
+<AverageFieldSize>1.55</AverageFieldSize>
+</Property>
+<Property name="ID">
+<Selectivity>1</Selectivity>
+<AverageFieldSize>1.55</AverageFieldSize>
+</Property>
+<Property name="address">
+<Selectivity>5.0000%</Selectivity>
+<AverageFieldSize>5</AverageFieldSize>
+</Property>
+<Property name="name">
+<Selectivity>16.6667%</Selectivity>
+<AverageFieldSize>8.8</AverageFieldSize>
+</Property>
+<Property name="openHours">
+<Selectivity>5.0000%,Friday:5.0000%,Monday:5.0000%,Saturday:5.0000%,Sunday:5.0000%,Thursday:5.0000%</Selectivity>
+<AverageFieldSize>87.8,Friday:10.55,Monday:10.4,Saturday:10.65,Sunday:10.45,Thursday:10.7</AverageFieldSize>
+</Property>
+<SQLMap name="IDKEY">
+<BlockCount>-4</BlockCount>
+</SQLMap>
+</Storage>
+</Class>
+
+
+<Class name="DAO.Driver">
+<Super>%SerialObject,%Populate,%JSON.Adaptor</Super>
+<TimeChanged>65272,35391.113974</TimeChanged>
+<TimeCreated>65241,59563.264472</TimeCreated>
+
+<UDLText name="T">
+<Content><![CDATA[
+// TODO: Property availability handled by the frontend?
+
+]]></Content>
+</UDLText>
+
+<Property name="availabilities">
+<Type>Helper.Availabilities</Type>
+</Property>
+
+<UDLText name="T">
+<Content><![CDATA[
+// TODO: Activated Boolean lists?
+
+]]></Content>
+</UDLText>
+
+<Property name="appNotification">
+<Type>%Boolean</Type>
+</Property>
+
+<Property name="emailNotification">
+<Type>%Boolean</Type>
+</Property>
+
+<Property name="smsNotification">
+<Type>%Boolean</Type>
+</Property>
+
+<Property name="jobs">
+<Type>DAO.Job</Type>
+<Collection>list</Collection>
+<Parameter name="%JSONINCLUDE" value="OUTPUTONLY"/>
+</Property>
+
+<Property name="communities">
+<Type>DAO.Community</Type>
+<Collection>list</Collection>
+</Property>
+
+<UDLText name="T">
+<Content><![CDATA[
+// TODO: Location - Communities
+
+]]></Content>
+</UDLText>
+
+<UDLText name="T">
+<Content><![CDATA[
+// Relationship Communities As DAO.Community [ Cardinality = many, Inverse = Customer ];
+
+]]></Content>
+</UDLText>
+
+<Storage name="Default">
+<Type>%Storage.Serial</Type>
+<State>DriverState</State>
+<StreamLocation>^DAO.DriverS</StreamLocation>
+<Data name="DriverState">
+<Value name="1">
+<Value>availability</Value>
+</Value>
+<Value name="2">
+<Value>notification</Value>
+</Value>
+<Value name="3">
+<Value>jobs</Value>
+</Value>
+<Value name="4">
+<Value>emailNotification</Value>
+</Value>
+<Value name="5">
+<Value>smsNotification</Value>
+</Value>
+<Value name="6">
+<Value>appNotification</Value>
+</Value>
+<Value name="7">
+<Value>availabilities</Value>
+</Value>
+<Value name="8">
+<Value>communities</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="DAO.Job">
+<Super>%Persistent,%Populate,%JSON.Adaptor</Super>
+<TimeChanged>65272,54997.099483</TimeChanged>
+<TimeCreated>65254,34987.621976</TimeCreated>
+
+<Property name="ID">
+<Type>%Integer</Type>
+<Identity>1</Identity>
+</Property>
+
+<Property name="delivery">
+<Type>DAO.Delivery</Type>
+</Property>
+
+<ForeignKey name="deliveryFK">
+<Properties>delivery</Properties>
+<ReferencedClass>DAO.Delivery</ReferencedClass>
+</ForeignKey>
+
+<Property name="pickup">
+<Type>DAO.Pickup</Type>
+</Property>
+
+<ForeignKey name="pickupFK">
+<Properties>pickup</Properties>
+<ReferencedClass>DAO.Pickup</ReferencedClass>
+</ForeignKey>
+
+<Property name="driver">
+<Type>DAO.User</Type>
+<Parameter name="%JSONREFERENCE" value="ID"/>
+</Property>
+
+<ForeignKey name="driverFK">
+<Properties>driver</Properties>
+<ReferencedClass>DAO.User</ReferencedClass>
+</ForeignKey>
+
+<Property name="ETA">
+<Type>%TimeStamp</Type>
+<Parameter name="MINVAL" value="2019-09-14 10:00:00"/>
+<Parameter name="POPSPEC" value="ValueList(&quot;,2019-09-18 10:00:00,2019-10-24 11:00:00&quot;)"/>
+</Property>
+
+<Property name="status">
+<Type>%Boolean</Type>
+<InitialExpression>0</InitialExpression>
+</Property>
+
+<UDLText name="T">
+<Content><![CDATA[
+// Relationship driver As DAO.Driver [ Cardinality = one, Inverse = jobs ];
+
+]]></Content>
+</UDLText>
+
+<UDLText name="T">
+<Content><![CDATA[
+// Some more property
+
+]]></Content>
+</UDLText>
+
+<Method name="CreateJobMonitoringService">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>job,type</FormalSpec>
+<Implementation><![CDATA[
+	Set tSC = ##class(Ens.Director).CreateBusinessService("MonitorAddedJob",.tService)
+	If ($IsObject(tService)) {
+		set notificationRequest = ##class(Messages.NotificationRequest).%New()
+		set notificationRequest.ID = job.%Id(), notificationRequest.type = type
+  		Set tSC = tService.ProcessInput(notificationRequest,.output)
+	}
+	
+	return tSC
+]]></Implementation>
+</Method>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DataLocation>^DAO.JobD</DataLocation>
+<DefaultData>JobDefaultData</DefaultData>
+<IdLocation>^DAO.JobD</IdLocation>
+<IndexLocation>^DAO.JobI</IndexLocation>
+<StreamLocation>^DAO.JobS</StreamLocation>
+<ExtentSize>20</ExtentSize>
+<Data name="JobDefaultData">
+<Value name="1">
+<Value>%%CLASSNAME</Value>
+</Value>
+<Value name="2">
+<Value>delivery</Value>
+</Value>
+<Value name="3">
+<Value>driver</Value>
+</Value>
+<Value name="4">
+<Value>pickUp</Value>
+</Value>
+<Value name="5">
+<Value>pickup</Value>
+</Value>
+<Value name="6">
+<Value>ETA</Value>
+</Value>
+<Value name="7">
+<Value>Status</Value>
+</Value>
+<Value name="8">
+<Value>status</Value>
+</Value>
+</Data>
+<Property name="%%CLASSNAME">
+<Selectivity>100.0000%</Selectivity>
+<AverageFieldSize>1</AverageFieldSize>
+</Property>
+<Property name="%%ID">
+<Selectivity>1</Selectivity>
+<AverageFieldSize>1.55</AverageFieldSize>
+</Property>
+<Property name="ETA">
+<Selectivity>50.0000%</Selectivity>
+<AverageFieldSize>19</AverageFieldSize>
+</Property>
+<Property name="ID">
+<Selectivity>1</Selectivity>
+<AverageFieldSize>1.55</AverageFieldSize>
+</Property>
+<Property name="delivery">
+<Selectivity>7.6923%</Selectivity>
+<AverageFieldSize>1.75</AverageFieldSize>
+</Property>
+<Property name="driver">
+<Selectivity>7.1429%</Selectivity>
+<AverageFieldSize>1.75</AverageFieldSize>
+</Property>
+<Property name="pickUp">
+<Selectivity>8.3333%</Selectivity>
+<AverageFieldSize>1.5</AverageFieldSize>
+</Property>
+<Property name="pickup">
+<Selectivity>7.1429%</Selectivity>
+<AverageFieldSize>1.5</AverageFieldSize>
+</Property>
+<Property name="status">
+<Selectivity>100.0000%</Selectivity>
+<AverageFieldSize>1</AverageFieldSize>
+</Property>
+<SQLMap name="IDKEY">
+<BlockCount>-4</BlockCount>
+</SQLMap>
+</Storage>
+</Class>
+
+
+<Class name="DAO.Pickup">
+<Super>%Persistent,%Populate,%JSON.Adaptor,BaseDeliveryPickup</Super>
+<TimeChanged>65272,54997.074504</TimeChanged>
+<TimeCreated>65254,61022.762088</TimeCreated>
+
+<Property name="customer">
+<Type>DAO.User</Type>
+<Cardinality>one</Cardinality>
+<Inverse>pickups</Inverse>
+<Relationship>1</Relationship>
+</Property>
+
+<Index name="customerIndex">
+<Properties>customer</Properties>
+</Index>
+
+<Property name="deliverySlipID">
+<Type>%Integer</Type>
+</Property>
+
+<Method name="GetUnassignedPickups">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>userId</FormalSpec>
+<Implementation><![CDATA[
+	#SQLCompile Select=Display
+	set pickups = []
+	&sql(declare EC3 cursor for select ID, customer->name, customer->email, "date", "time", timeTo, pickupAddress into 
+			:id, :customer, :customerEmail, :date, :time, :timeTo, :pickupAddress from DAO.Pickup 
+			where status=0 and customer != :userId and "date" >= cast(GETDATE() as date))
+	&sql(open EC3)
+	for {
+		&sql(fetch EC3)
+		quit:(SQLCODE '= 0)
+		set pickup = {}
+		set pickup.ID = id,pickup.customerName = customer, pickup.customerEmail = customerEmail,
+		pickup.date = date, pickup.time = time, pickup.timeTo = timeTo, pickup.pickupAddress = pickupAddress
+		do pickups.%Push(pickup)
+	}
+	
+	return pickups
+]]></Implementation>
+</Method>
+
+<Method name="CreatePickupMonitoringService">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>pickup</FormalSpec>
+<Implementation><![CDATA[
+	Set tSC = ##class(Ens.Director).CreateBusinessService("MonitorAddedPickup",.tService)
+	If ($IsObject(tService)) {
+		set notificationRequest = ##class(Messages.NotificationRequest).%New()
+		set notificationRequest.ID = pickup.%Id(), notificationRequest.type = "Pickup"
+  		Set tSC = tService.ProcessInput(notificationRequest,.output)
+	}
+	
+	return tSC
+]]></Implementation>
+</Method>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DataLocation>^DAO.PickupD</DataLocation>
+<DefaultData>PickupDefaultData</DefaultData>
+<IdLocation>^DAO.PickupD</IdLocation>
+<IndexLocation>^DAO.PickupI</IndexLocation>
+<StreamLocation>^DAO.PickupS</StreamLocation>
+<ExtentSize>20</ExtentSize>
+<Data name="PickupDefaultData">
+<Value name="1">
+<Value>%%CLASSNAME</Value>
+</Value>
+<Value name="2">
+<Value>customer</Value>
+</Value>
+<Value name="3">
+<Value>date</Value>
+</Value>
+<Value name="4">
+<Value>time</Value>
+</Value>
+<Value name="5">
+<Value>timeTo</Value>
+</Value>
+<Value name="6">
+<Value>status</Value>
+</Value>
+<Value name="7">
+<Value>pickupAddress</Value>
+</Value>
+<Value name="8">
+<Value>deliverySlip</Value>
+</Value>
+<Value name="9">
+<Value>deliverySlipID</Value>
+</Value>
+</Data>
+<Property name="%%CLASSNAME">
+<Selectivity>100.0000%</Selectivity>
+<AverageFieldSize>1</AverageFieldSize>
+</Property>
+<Property name="%%ID">
+<Selectivity>1</Selectivity>
+<AverageFieldSize>1.55</AverageFieldSize>
+</Property>
+<Property name="ID">
+<Selectivity>1</Selectivity>
+<AverageFieldSize>1.55</AverageFieldSize>
+</Property>
+<Property name="customer">
+<Selectivity>7.6923%</Selectivity>
+<AverageFieldSize>1.3</AverageFieldSize>
+</Property>
+<Property name="date">
+<Selectivity>5.0000%</Selectivity>
+<AverageFieldSize>5</AverageFieldSize>
+</Property>
+<Property name="deliverySlipID">
+<Selectivity>5.0000%</Selectivity>
+<AverageFieldSize>8.9</AverageFieldSize>
+</Property>
+<Property name="pickupAddress">
+<Selectivity>100.0000%</Selectivity>
+<AverageFieldSize>15</AverageFieldSize>
+</Property>
+<Property name="status">
+<Selectivity>100.0000%</Selectivity>
+<AverageFieldSize>1</AverageFieldSize>
+</Property>
+<Property name="time">
+<Selectivity>5.0000%</Selectivity>
+<AverageFieldSize>4.8</AverageFieldSize>
+</Property>
+<Property name="timeTo">
+<Selectivity>5.0000%</Selectivity>
+<AverageFieldSize>4.85</AverageFieldSize>
+</Property>
+<SQLMap name="IDKEY">
+<BlockCount>-4</BlockCount>
+</SQLMap>
+<SQLMap name="customerIndex">
+<BlockCount>-4</BlockCount>
+</SQLMap>
+</Storage>
+</Class>
+
+
+<Class name="DAO.User">
+<Super>%Persistent,%Populate,Utils.ObjectGenerator,%JSON.Adaptor</Super>
+<TimeChanged>65272,54997.010705</TimeChanged>
+<TimeCreated>65244,55881.678284</TimeCreated>
+
+<Property name="ID">
+<Type>%Integer</Type>
+<Identity>1</Identity>
+</Property>
+
+<Property name="email">
+<Type>%String</Type>
+</Property>
+
+<Index name="emailIndex">
+<Properties>email</Properties>
+<Unique>1</Unique>
+</Index>
+
+<Property name="name">
+<Type>%String</Type>
+</Property>
+
+<Property name="phoneNumber">
+<Type>%String</Type>
+<Parameter name="POPSPEC" value="USPhone()"/>
+</Property>
+
+<Property name="appNotification">
+<Type>%Boolean</Type>
+</Property>
+
+<Property name="emailNotification">
+<Type>%Boolean</Type>
+</Property>
+
+<Property name="smsNotification">
+<Type>%Boolean</Type>
+</Property>
+
+<Property name="password">
+<Type>%String</Type>
+<Required>1</Required>
+<Parameter name="%JSONINCLUDE" value="INPUTONLY"/>
+<Parameter name="POPSPEC" value="##class(Helper.HashedPass).GenerateHashedPassword()"/>
+</Property>
+
+<Property name="deliveries">
+<Type>DAO.Delivery</Type>
+<Cardinality>many</Cardinality>
+<Inverse>customer</Inverse>
+<Relationship>1</Relationship>
+</Property>
+
+<Property name="pickups">
+<Type>DAO.Pickup</Type>
+<Cardinality>many</Cardinality>
+<Inverse>customer</Inverse>
+<Relationship>1</Relationship>
+</Property>
+
+<Property name="communities">
+<Type>DAO.Community</Type>
+<Collection>list</Collection>
+</Property>
+
+<Property name="driverDetails">
+<Type>DAO.Driver</Type>
+</Property>
+
+<Method name="GetUserByEmailAndPassword">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>email,password</FormalSpec>
+<Implementation><![CDATA[
+	&sql(SELECT id into :id FROM DAO."USER" where email=:email AND password=:password)
+	return id
+]]></Implementation>
+</Method>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DataLocation>^DAO.UserD</DataLocation>
+<DefaultData>UserDefaultData</DefaultData>
+<IdLocation>^DAO.UserD</IdLocation>
+<IndexLocation>^DAO.UserI</IndexLocation>
+<StreamLocation>^DAO.UserS</StreamLocation>
+<ExtentSize>20</ExtentSize>
+<Data name="UserDefaultData">
+<Value name="1">
+<Value>%%CLASSNAME</Value>
+</Value>
+<Value name="2">
+<Value>email</Value>
+</Value>
+<Value name="3">
+<Value>password</Value>
+</Value>
+<Value name="4">
+<Value>communities</Value>
+</Value>
+<Value name="5">
+<Value>driverDetails</Value>
+</Value>
+<Value name="6">
+<Value>name</Value>
+</Value>
+<Value name="7">
+<Value>phoneNumber</Value>
+</Value>
+<Value name="8">
+<Value>appNotification</Value>
+</Value>
+<Value name="9">
+<Value>emailNotification</Value>
+</Value>
+<Value name="10">
+<Value>smsNotification</Value>
+</Value>
+</Data>
+<Property name="%%CLASSNAME">
+<Selectivity>100.0000%</Selectivity>
+<AverageFieldSize>1</AverageFieldSize>
+</Property>
+<Property name="%%ID">
+<Selectivity>1</Selectivity>
+<AverageFieldSize>1.55</AverageFieldSize>
+</Property>
+<Property name="ID">
+<Selectivity>1</Selectivity>
+<AverageFieldSize>1.55</AverageFieldSize>
+</Property>
+<Property name="appNotification">
+<Selectivity>50.0000%</Selectivity>
+<AverageFieldSize>1</AverageFieldSize>
+</Property>
+<Property name="communities">
+<Selectivity>5.5556%</Selectivity>
+<AverageFieldSize>25.9</AverageFieldSize>
+</Property>
+<Property name="driverDetails">
+<Selectivity>5.0000%,appNotification:15.0000%,availabilities:5.0000%,communities:6.2500%</Selectivity>
+<OutlierSelectivity>,appNotification:.85:0</OutlierSelectivity>
+<AverageFieldSize>132.1,appNotification:1,availabilities:87.15,communities:29.8</AverageFieldSize>
+</Property>
+<Property name="email">
+<Selectivity>1</Selectivity>
+<AverageFieldSize>4.9</AverageFieldSize>
+</Property>
+<Property name="emailNotification">
+<Selectivity>50.0000%</Selectivity>
+<AverageFieldSize>1</AverageFieldSize>
+</Property>
+<Property name="name">
+<Selectivity>5.0000%</Selectivity>
+<AverageFieldSize>15.7</AverageFieldSize>
+</Property>
+<Property name="password">
+<Selectivity>100.0000%</Selectivity>
+<AverageFieldSize>8</AverageFieldSize>
+</Property>
+<Property name="phoneNumber">
+<Selectivity>5.0000%</Selectivity>
+<AverageFieldSize>12</AverageFieldSize>
+</Property>
+<Property name="smsNotification">
+<Selectivity>50.0000%</Selectivity>
+<AverageFieldSize>1</AverageFieldSize>
+</Property>
+<SQLMap name="IDKEY">
+<BlockCount>-4</BlockCount>
+</SQLMap>
+<SQLMap name="emailIndex">
+<BlockCount>-4</BlockCount>
+</SQLMap>
+</Storage>
+</Class>
+
+
+<Project name="EnCasa" LastModified="2019-09-18 14:40:27.850149">
+  <Items>
+    <ProjectItem name="DAO.BaseDeliveryPickup" type="CLS"></ProjectItem>
+    <ProjectItem name="DAO.Community" type="CLS"></ProjectItem>
+    <ProjectItem name="DAO.Delivery" type="CLS"></ProjectItem>
+    <ProjectItem name="DAO.DispatchCentre" type="CLS"></ProjectItem>
+    <ProjectItem name="DAO.Driver" type="CLS"></ProjectItem>
+    <ProjectItem name="DAO.Job" type="CLS"></ProjectItem>
+    <ProjectItem name="DAO.Pickup" type="CLS"></ProjectItem>
+    <ProjectItem name="DAO.User" type="CLS"></ProjectItem>
+    <ProjectItem name="Helper.Availabilities" type="CLS"></ProjectItem>
+    <ProjectItem name="Helper.HashedPass" type="CLS"></ProjectItem>
+    <ProjectItem name="Helper.OpenToClose" type="CLS"></ProjectItem>
+    <ProjectItem name="Helper.OutboundAdapter" type="CLS"></ProjectItem>
+    <ProjectItem name="Logistics.CommunityLogisticsProject" type="CLS"></ProjectItem>
+    <ProjectItem name="Messages.SendEmailRequest" type="CLS"></ProjectItem>
+    <ProjectItem name="Messages.SendSMSRequest" type="CLS"></ProjectItem>
+    <ProjectItem name="Operation.SendEmailNotification" type="CLS"></ProjectItem>
+    <ProjectItem name="Operation.SendSMSNotification" type="CLS"></ProjectItem>
+    <ProjectItem name="Process.DetermineDeliverySendNotification" type="CLS"></ProjectItem>
+    <ProjectItem name="Process.DetermineJobSendNotification" type="CLS"></ProjectItem>
+    <ProjectItem name="REST.Interoperability.NotificationRESTService" type="CLS"></ProjectItem>
+    <ProjectItem name="REST.Logistics" type="PKG"></ProjectItem>
+    <ProjectItem name="Service.MonitorAddedDelivery" type="CLS"></ProjectItem>
+    <ProjectItem name="Service.MonitorAddedJob" type="CLS"></ProjectItem>
+    <ProjectItem name="Service.MonitorAddedPickup" type="CLS"></ProjectItem>
+    <ProjectItem name="Utils.ObjectGenerator" type="CLS"></ProjectItem>
+    <ProjectItem name="Utils.Populate" type="CLS"></ProjectItem>
+  </Items>
+</Project>
+
+
+<Class name="Helper.Availabilities">
+<Super>%SerialObject,%Populate,%JSON.Adaptor</Super>
+<TimeChanged>65254,55438.117978</TimeChanged>
+<TimeCreated>65254,54090.672536</TimeCreated>
+
+<Property name="Monday">
+<Type>Helper.OpenToClose</Type>
+</Property>
+
+<Property name="Tuesday">
+<Type>Helper.OpenToClose</Type>
+</Property>
+
+<Property name="Wednesday">
+<Type>Helper.OpenToClose</Type>
+</Property>
+
+<Property name="Thursday">
+<Type>Helper.OpenToClose</Type>
+</Property>
+
+<Property name="Friday">
+<Type>Helper.OpenToClose</Type>
+</Property>
+
+<Property name="Saturday">
+<Type>Helper.OpenToClose</Type>
+</Property>
+
+<Property name="Sunday">
+<Type>Helper.OpenToClose</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Serial</Type>
+<DataLocation>^Helper.AvailabilitiesD</DataLocation>
+<DefaultData>AvailabilitiesDefaultData</DefaultData>
+<IdLocation>^Helper.AvailabilitiesD</IdLocation>
+<IndexLocation>^Helper.AvailabilitiesI</IndexLocation>
+<State>AvailabilitiesState</State>
+<StreamLocation>^Helper.AvailabilitiesS</StreamLocation>
+<ExtentSize>20</ExtentSize>
+<Data name="AvailabilitiesDefaultData">
+<Subscript>"1"</Subscript>
+<Value name="1">
+<Value>%%CLASSNAME</Value>
+</Value>
+</Data>
+<Data name="AvailabilitiesState">
+<Value name="1">
+<Value>Monday</Value>
+</Value>
+<Value name="2">
+<Value>Tuesday</Value>
+</Value>
+<Value name="3">
+<Value>Wednesday</Value>
+</Value>
+<Value name="4">
+<Value>Thursday</Value>
+</Value>
+<Value name="5">
+<Value>Friday</Value>
+</Value>
+<Value name="6">
+<Value>Saturday</Value>
+</Value>
+<Value name="7">
+<Value>Sunday</Value>
+</Value>
+</Data>
+<Property name="%%CLASSNAME">
+<Selectivity>100.0000%</Selectivity>
+<AverageFieldSize>1</AverageFieldSize>
+</Property>
+<Property name="%%ID">
+<Selectivity>1</Selectivity>
+<AverageFieldSize>1.55</AverageFieldSize>
+</Property>
+<Property name="Friday">
+<Selectivity>5.0000%,availableFrom:5.0000%,availableTo:5.0000%</Selectivity>
+<AverageFieldSize>8.45,availableFrom:4.85,availableTo:4.9</AverageFieldSize>
+</Property>
+<Property name="Monday">
+<Selectivity>5.0000%,availableFrom:5.0000%,availableTo:5.0000%</Selectivity>
+<AverageFieldSize>8.35,availableFrom:4.8,availableTo:4.95</AverageFieldSize>
+</Property>
+<Property name="Saturday">
+<Selectivity>5.0000%,availableFrom:5.0000%,availableTo:5.0000%</Selectivity>
+<AverageFieldSize>8.45,availableFrom:4.75,availableTo:4.8</AverageFieldSize>
+</Property>
+<Property name="Sunday">
+<Selectivity>5.0000%,availableFrom:5.0000%,availableTo:5.0000%</Selectivity>
+<AverageFieldSize>8.4,availableFrom:4.85,availableTo:4.8</AverageFieldSize>
+</Property>
+<Property name="Thursday">
+<Selectivity>5.0000%,availableFrom:5.0000%,availableTo:5.0000%</Selectivity>
+<AverageFieldSize>8.5,availableFrom:4.85,availableTo:4.8</AverageFieldSize>
+</Property>
+<Property name="Tuesday">
+<Selectivity>5.0000%,availableFrom:5.0000%,availableTo:5.0000%</Selectivity>
+<AverageFieldSize>8.45,availableFrom:4.85,availableTo:4.8</AverageFieldSize>
+</Property>
+<Property name="Wednesday">
+<Selectivity>5.0000%,availableFrom:5.0000%,availableTo:5.0000%</Selectivity>
+<AverageFieldSize>8.45,availableFrom:4.8,availableTo:4.75</AverageFieldSize>
+</Property>
+<SQLMap name="IDKEY">
+<BlockCount>-4</BlockCount>
+</SQLMap>
+</Storage>
+</Class>
+
+
+<Class name="Helper.HashedPass">
+<Super>%SYSTEM.Encryption</Super>
+<TimeChanged>65261,51147.247264</TimeChanged>
+<TimeCreated>65261,46585.571365</TimeCreated>
+
+<Parameter name="password">
+<Default>blah</Default>
+</Parameter>
+
+<Method name="GenerateHashedPassword">
+<ClassMethod>1</ClassMethod>
+<ReturnType>%String</ReturnType>
+<Implementation><![CDATA[
+#;		set hashedPassword =  ..SHAHash(256, ..#password)
+		set hashedPassword = ..Base64Encode(..#password)
+		return hashedPassword
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="Helper.OpenToClose">
+<Super>%SerialObject,%Populate,%JSON.Adaptor</Super>
+<TimeChanged>65254,55650.67769</TimeChanged>
+<TimeCreated>65254,54332.223891</TimeCreated>
+
+<Property name="from">
+<Description>
+Time available from</Description>
+<Type>%Time</Type>
+<Parameter name="MAXVAL" value="$ztimeh(&quot;12:00n&quot;)"/>
+<Parameter name="MINVAL" value="$ztimeh(&quot;6:00am&quot;)"/>
+</Property>
+
+<Property name="to">
+<Description>
+Time available to</Description>
+<Type>%Time</Type>
+<Parameter name="MAXVAL" value="$ztimeh(&quot;11:00pm&quot;)"/>
+<Parameter name="MINVAL" value="$ztimeh(&quot;1:00pm&quot;)"/>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Serial</Type>
+<State>OpenToCloseState</State>
+<StreamLocation>^Helper.OpenToCloseS</StreamLocation>
+<Data name="OpenToCloseState">
+<Value name="1">
+<Value>availableFrom</Value>
+</Value>
+<Value name="2">
+<Value>availableTo</Value>
+</Value>
+<Value name="3">
+<Value>from</Value>
+</Value>
+<Value name="4">
+<Value>to</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="Helper.OutboundAdapter">
+<Super>EnsLib.HTTP.OutboundAdapter</Super>
+<TimeChanged>65260,58062.537519</TimeChanged>
+<TimeCreated>65260,57782.068197</TimeCreated>
+
+<Method name="PostURL">
+<CodeMode>expression</CodeMode>
+<FormalSpec>pURL:%String,*pHttpResponse:%Net.HttpResponse,pFormVarNames:%String,pData...</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[..SendFormDataArray(.pHttpResponse, "POST", ..GetRequest(), .pFormVarNames, .pData, pURL)
+]]></Implementation>
+</Method>
+
+<Method name="GetRequest">
+<ClassMethod>1</ClassMethod>
+<ReturnType>%Net.HttpRequest</ReturnType>
+<Implementation><![CDATA[
+    set request = ##class(%Net.HttpRequest).%New()
+    set request.ContentType  =  "application/json"
+    quit request
+]]></Implementation>
+</Method>
+
+<Method name="Post">
+<Description><![CDATA[
+Send a POST to the configured Server, Port and URL, sending form data to the named form variables.
+<var>pFormVarNames</var> is a comma-separated list of form variable names to use. To use a request Body
+instead of form variables, leave <var>pFormVarNames</var> empty and pass the body text as the <var>pData</var> argument.
+Otherwise, for each name in the list, a <var>pData</var> argument should be supplied. If you need to pass multiple
+values for any form variable, you can put the name of that variable multiple times in the <var>pFormVarNames</var> list.
+Also, any extra <var>pData</var> arguments you supply will be assigned to the last form variable in the list.
+ 
+ Note: A Data value passed for body text may be of either String type or Stream. Data values
+  passed for form variables must be of String type.]]></Description>
+<CodeMode>expression</CodeMode>
+<FormalSpec>*pHttpResponse:%Net.HttpResponse,pFormVarNames:%String,pData...</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[..SendFormDataArray(.pHttpResponse,"POST",..GetRequest(),.pFormVarNames,.pData)
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="Logistics.CommunityLogisticsProject">
+<Super>Ens.Production</Super>
+<TimeChanged>65273,55823.339675</TimeChanged>
+<TimeCreated>65257,59413.436919</TimeCreated>
+
+<XData name="ProductionDefinition">
+<Data><![CDATA[
+<Production Name="Logistics.CommunityLogisticsProject" TestingEnabled="true" LogGeneralTraceEvents="true">
+  <Description></Description>
+  <ActorPoolSize>2</ActorPoolSize>
+  <Item Name="SendEmailNotification" Category="Email" ClassName="Operation.SendEmailNotification" PoolSize="1" Enabled="true" Foreground="true" Comment="" LogTraceEvents="true" Schedule="">
+    <Setting Target="Adapter" Name="Credentials">GMAIL2</Setting>
+    <Setting Target="Adapter" Name="SMTPPort">465</Setting>
+    <Setting Target="Adapter" Name="SMTPServer">smtp.gmail.com</Setting>
+    <Setting Target="Adapter" Name="SSLConfig">GMAIL</Setting>
+    <Setting Target="Adapter" Name="From">logistics@CommU.com</Setting>
+  </Item>
+  <Item Name="SendSMSNotification" Category="SMS" ClassName="Operation.SendSMSNotification" PoolSize="1" Enabled="true" Foreground="true" Comment="" LogTraceEvents="true" Schedule="">
+    <Setting Target="Host" Name="AlertOnError">1</Setting>
+    <Setting Target="Host" Name="FromPhoneNumber">0427399979</Setting>
+    <Setting Target="Host" Name="ToPhoneNumber">0427399979</Setting>
+    <Setting Target="Adapter" Name="HTTPServer">api.directsms.com.au</Setting>
+    <Setting Target="Adapter" Name="URL">s3/rest/sms/send</Setting>
+    <Setting Target="Adapter" Name="Credentials">DirectSMS</Setting>
+    <Setting Target="Adapter" Name="SSLCheckServerIdentity">0</Setting>
+  </Item>
+  <Item Name="NotificationRESTService" Category="" ClassName="REST.Interoperability.NotificationRESTService" PoolSize="1" Enabled="true" Foreground="true" Comment="" LogTraceEvents="true" Schedule="">
+    <Setting Target="Adapter" Name="Port">9999</Setting>
+  </Item>
+  <Item Name="MonitorAddedDelivery" Category="" ClassName="Service.MonitorAddedDelivery" PoolSize="0" Enabled="true" Foreground="true" Comment="" LogTraceEvents="true" Schedule="">
+  </Item>
+  <Item Name="MonitorAddedJob" Category="" ClassName="Service.MonitorAddedJob" PoolSize="0" Enabled="true" Foreground="true" Comment="" LogTraceEvents="true" Schedule="">
+  </Item>
+  <Item Name="DetermineDeliverySendNotification" Category="" ClassName="Process.DetermineDeliverySendNotification" PoolSize="1" Enabled="true" Foreground="true" Comment="" LogTraceEvents="true" Schedule="">
+  </Item>
+  <Item Name="DetermineJobSendNotification" Category="" ClassName="Process.DetermineJobSendNotification" PoolSize="1" Enabled="true" Foreground="true" Comment="" LogTraceEvents="true" Schedule="">
+    <Setting Target="Host" Name="RuleLogging">a</Setting>
+  </Item>
+  <Item Name="MonitorAddedPickup" Category="" ClassName="Service.MonitorAddedPickup" PoolSize="0" Enabled="true" Foreground="true" Comment="" LogTraceEvents="true" Schedule="">
+  </Item>
+</Production>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="Messages.SendEmailRequest">
+<Language>objectscript</Language>
+<Super>Ens.Request,%JSON.Adaptor</Super>
+<TimeChanged>65270,61348.522223</TimeChanged>
+<TimeCreated>65257,59198.839004</TimeCreated>
+
+<UDLText name="T">
+<Content><![CDATA[
+// LIST OF DESTINATIONS?
+
+]]></Content>
+</UDLText>
+
+<Property name="destinations">
+<Type>%String</Type>
+<Collection>list</Collection>
+</Property>
+
+<Property name="textBody">
+<Type>%String</Type>
+<Collection>array</Collection>
+<Parameter name="MAXLEN" value="2000"/>
+</Property>
+
+<Property name="subject">
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="2000"/>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DefaultData>SendEmailRequestDefaultData</DefaultData>
+<Data name="SendEmailRequestDefaultData">
+<Subscript>"SendEmailRequest"</Subscript>
+<Value name="1">
+<Value>destinations</Value>
+</Value>
+<Value name="2">
+<Value>subject</Value>
+</Value>
+</Data>
+<Data name="textBody">
+<Attribute>textBody</Attribute>
+<Structure>subnode</Structure>
+<Subscript>"Messages.SendEmailRequest.textBody"</Subscript>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="Messages.SendSMSRequest">
+<Language>objectscript</Language>
+<Super>Ens.Request,%JSON.Adaptor</Super>
+<TimeChanged>65261,33541.9249</TimeChanged>
+<TimeCreated>65258,49829.402631</TimeCreated>
+
+<Property name="messageType">
+<Type>%String</Type>
+</Property>
+
+<Property name="senderId">
+<Type>%String</Type>
+</Property>
+
+<Property name="to">
+<Type>%String</Type>
+<Collection>list</Collection>
+</Property>
+
+<Property name="messageText">
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="2000"/>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DefaultData>SendSMSRequestDefaultData</DefaultData>
+<Data name="SendSMSRequestDefaultData">
+<Subscript>"SendSMSRequest"</Subscript>
+<Value name="1">
+<Value>messageType</Value>
+</Value>
+<Value name="2">
+<Value>senderId</Value>
+</Value>
+<Value name="3">
+<Value>to</Value>
+</Value>
+<Value name="4">
+<Value>messageText</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="Operation.SendEmailNotification">
+<Description>
+Sends emails based on EMail Adapter config settings and the property values of a SendEmail request object</Description>
+<ClassType/>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>Ens.BusinessOperation</Super>
+<TimeChanged>65272,56232.05457</TimeChanged>
+<TimeCreated>65257,59473.185109</TimeCreated>
+
+<Parameter name="INVOCATION">
+<Description>
+2 modes: Queue, InProc</Description>
+<Default>Queue</Default>
+</Parameter>
+
+<Parameter name="ADAPTER">
+<Description>
+Name of the adapter class</Description>
+<Default>EnsLib.EMail.OutboundAdapter</Default>
+</Parameter>
+
+<Method name="EmailSendNotification">
+<Description>
+Send an approval email to the applicant</Description>
+<FormalSpec>pRequest:Messages.SendEmailRequest,*pResponse:Ens.Response</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	If pRequest.destinations.Count()=0 $$$TRACE("no email address.") Quit $$$OK
+	Set tMailMessage=##class(%Net.MailMessage).%New()
+	for i=1:1:pRequest.destinations.Count() {
+		Do tMailMessage.To.Insert(pRequest.destinations.GetAt(i))	
+		$$$TRACE("send email to "_pRequest.destinations.GetAt(i))
+	}
+
+	Set tMailMessage.Subject=pRequest.subject
+	
+	$$$TRACE(pRequest.textBody)
+	$$$TRACE(pRequest.textBody.GetAt("Details"))
+	set tSC = tMailMessage.TextData.WriteLine("-----------------")
+	set key  = ""
+	for {
+		set val = pRequest.textBody.GetNext(.key)
+		quit:(key = "")
+		$$$TRACE(key)
+		$$$TRACE(val)
+		set tSC = tMailMessage.TextData.WriteLine(key _ ": " _ val)	
+		Quit:$$$ISERR(tSC) tSC 
+	}
+	set tSC = tMailMessage.TextData.WriteLine("-----------------")
+	
+	
+	$$$TRACE(tMailMessage.Subject)
+	set tMailMessage.Charset="UTF-8"
+	Set tSC=..Adapter.SendMail(tMailMessage)
+	Quit tSC
+]]></Implementation>
+</Method>
+
+<XData name="MessageMap">
+<Data><![CDATA[
+<MapItem MessageType="Messages.SendEmailRequest">
+<Method>EmailSendNotification</Method>
+</MapItem>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="Operation.SendSMSNotification">
+<Super>Ens.BusinessOperation</Super>
+<TimeChanged>65271,64831.483977</TimeChanged>
+<TimeCreated>65258,48721.741033</TimeCreated>
+
+<Parameter name="ADAPTER">
+<Default>Helper.OutboundAdapter</Default>
+</Parameter>
+
+<Property name="Adapter">
+<Type>Helper.OutboundAdapter</Type>
+</Property>
+
+<Parameter name="INVOCATION">
+<Default>Queue</Default>
+</Parameter>
+
+<Method name="SendSMSNotification">
+<FormalSpec>pRequest:Messages.SendEmailRequest,*pResponse:Ens.Response</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+
+  Set $ZT="Trap",tSC=$$$OK
+  do {
+
+    set tResponse = ##class(%Net.HttpResponse).%New()
+    $$$TRACE(pRequest)
+    set dynamicObject = {}, dynamicObject.senderId = pRequest.senderId
+    set dynamicObject.messageText = pRequest.messageText
+    set dynamicObject.messageType = pRequest.messageType
+    set dynamicObject.to = []
+	for i=1:1:pRequest.to.Count() {
+		set phoneNum = pRequest.to.GetAt(i)
+		if ($FIND(phoneNum, "-") '= 0) {
+			set val = ""
+			for j=1:1:$LENGTH(phoneNum, "-") { set val = val _ $PIECE(phoneNum, "-", j) }
+			Do dynamicObject.to.%Push(val)
+			$$$TRACE("send sms to "_pRequest.to.GetAt(i))
+		} else {
+			Do dynamicObject.to.%Push(pRequest.to.GetAt(i))
+			$$$TRACE("send sms to "_pRequest.to.GetAt(i))
+		}	
+
+	}
+	
+	$$$TRACE(dynamicObject.%ToJSON())
+    set Adapter = ##class(Helper.OutboundAdapter).%New()
+    
+    set tsc = ..Adapter.Post(.tResponse,,dynamicObject.%ToJSON())
+    
+    $$$TRACE(tsc)
+    Quit
+  } while (0)
+Exit
+  Quit tSC
+Trap
+  Set $ZT="",tSC=$$$EnsSystemError
+  Goto Exit
+]]></Implementation>
+</Method>
+
+<XData name="MessageMap">
+<Data><![CDATA[
+<MapItems>
+ <MapItem MessageType="Messages.SendSMSRequest"> 
+ <Method>SendSMSNotification</Method>
+ </MapItem>
+ </MapItems>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="Process.DetermineDeliverySendNotification">
+<Description>
+</Description>
+<ClassType>persistent</ClassType>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>Ens.BusinessProcessBPL</Super>
+<TimeChanged>65273,32520.197966</TimeChanged>
+<TimeCreated>65267,38606.229268</TimeCreated>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DefaultData>DetermineDeliverySendNotificationDefaultData</DefaultData>
+<Data name="%ResponseHandlers">
+<Attribute>%ResponseHandlers</Attribute>
+<Structure>subnode</Structure>
+<Subscript>"Process.DetermineDeliverySendNotification.%ResponseHandlers"</Subscript>
+</Data>
+<Data name="DetermineDeliverySendNotificationDefaultData">
+<Subscript>"DetermineDeliverySendNotification"</Subscript>
+<Value name="1">
+<Value>%Process</Value>
+</Value>
+<Value name="2">
+<Value>%LastError</Value>
+</Value>
+<Value name="3">
+<Value>%LastFault</Value>
+</Value>
+</Data>
+</Storage>
+
+<XData name="BPL">
+<Description>
+BPL Definition</Description>
+<XMLNamespace>http://www.intersystems.com/bpl</XMLNamespace>
+<Data><![CDATA[
+<process language='objectscript' request='Ens.Request' response='Messages.SendEmailResponse' height='3300' width='2015' >
+<context>
+<property name='SendEmailRequest' type='Messages.SendEmailRequest' instantiate='1' />
+<property name='Delivery' type='DAO.Delivery' instantiate='0' />
+<property name='status' type='%Boolean' instantiate='0' />
+<property name='CurrentTime' type='%String' initialexpression='$SYSTEM.SYS.Horolog()' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='250' />
+</parameters>
+</property>
+<property name='DateTimeDifference' type='%Integer' instantiate='0' />
+<property name='SleepTime' type='%Integer' instantiate='0' />
+<property name='NumOfCall' type='%Integer' initialexpression='0' instantiate='0' />
+<property name='type' type='%String' initialexpression='"Delivery"' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+</context>
+<sequence xend='200' yend='1100' >
+<trace name='Show Job Posted' value='"New Job Posted!  Type:" _ request.type _ " ID: " _ request.ID' xpos='200' ypos='250' />
+<if name='Check Type = Delivery' condition='request.type = "Delivery"' xpos='200' ypos='350' xend='200' yend='600' >
+<true>
+<assign name="Set Delivery" property="context.Delivery" value="##class(DAO.Delivery).%OpenId(request.ID)" action="set" xpos='470' ypos='500' />
+</true>
+<false>
+<assign name="Set Pickup" property="context.Delivery" value="##class(DAO.Pickup).%OpenId(request.ID)" action="set" xpos='200' ypos='500' />
+</false>
+</if>
+<trace name='Trace Status' value='context.Delivery.status' xpos='200' ypos='700' />
+<code name='Set DateTimeDifference' xpos='200' ypos='800' >
+<![CDATA[
+  set deliveryDateTimeCommence = context.Delivery.date _ "," _ context.Delivery.time
+  set context.DateTimeDifference = $system.SQL.DATEDIFF("ss", $H, deliveryDateTimeCommence)
+  ]]]]><![CDATA[>
+</code>
+<trace name='Trace DateTimeDifferencce' value='context.DateTimeDifference' xpos='200' ypos='900' />
+<while name='Check Status and Time Diff' condition='(context.Delivery.status = "0") &amp;&amp; (context.DateTimeDifference &gt; "30")' xpos='200' ypos='1000' xend='200' yend='2600' >
+<annotation>Keep looping until delivery status = 1 and datetimedifference is still bigger than 30 seconds</annotation>
+<if name='Check Type = Delivery' condition='request.type = "Delivery"' xpos='200' ypos='250' xend='200' yend='700' >
+<true>
+<assign name="Set Context Type = Delivery" property="context.type" value="&quot;Delivery&quot;" action="set" xpos='470' ypos='400' />
+<assign name="Set Delivery" property="context.Delivery" value="##class(DAO.Delivery).%OpenId(request.ID)" action="set" xpos='470' ypos='500' />
+<transform name='Convert Delivery Item to Mail' class='DTL.ConvertDeliveryItemToMessage' source='context.Delivery' target='context.SendEmailRequest' xpos='470' ypos='600' />
+</true>
+<false>
+<assign name="Set Context Type = Pickup" property="context.type" value="&quot;Pickup&quot;" action="set" xpos='200' ypos='400' />
+<assign name="Set Pickup" property="context.Delivery" value="##class(DAO.Pickup).%OpenId(request.ID)" action="set" xpos='200' ypos='500' />
+<transform name='Convert Pickup Item to Mail' class='DTL.ConvertPickupItemToMessage' source='context.Delivery' target='context.SendEmailRequest' xpos='200' ypos='600' />
+</false>
+</if>
+<trace name='Trace Status' value='context.Delivery.status' xpos='200' ypos='800' />
+<trace name='Trace Delivery Time' value='context.Delivery.date _ "," _ context.Delivery.time' xpos='200' ypos='900' />
+<code name='Set DateTimeDifference' xpos='200' ypos='1000' >
+<![CDATA[
+  set deliveryDateTimeCommence = context.Delivery.date _ "," _ context.Delivery.time
+  set context.DateTimeDifference = $system.SQL.DATEDIFF("ss", $H, deliveryDateTimeCommence)
+  ]]]]><![CDATA[>
+</code>
+<trace name='Trace DateTimeDifferencce' value='context.DateTimeDifference' xpos='200' ypos='1100' />
+<if name='Check Status and Date Time Difference' condition='(context.Delivery.status = "0") &amp;&amp; (context.DateTimeDifference &gt; "240")' xpos='200' ypos='1200' xend='200' yend='2400' >
+<annotation><![CDATA[Check Status and DateTimeDifference]]]]><![CDATA[></annotation>
+<true>
+<rule name='Set Email Subject' rule='Rules.SetMessageSubject'  resultLocation='context.SendEmailRequest.subject' ruleContext='context' xpos='1280' ypos='1350' >
+<annotation><![CDATA[Set Email Subject Based on the Num Of Call Rule]]]]><![CDATA[></annotation>
+</rule>
+<if name='Check Subscribe to Email Notification' condition='context.Delivery.customer.emailNotification = "1"' xpos='1280' ypos='1450' xend='1280' yend='1700' >
+<true>
+<call name='Send Email Service' target='SendEmailNotification' async='1' xpos='1415' ypos='1600' >
+<annotation><![CDATA[Send Email to User based on transformed data]]]]><![CDATA[></annotation>
+<request type='Messages.SendEmailRequest' >
+<assign property="callrequest.destinations" value="context.Delivery.customer.email" action="append" />
+<assign property="callrequest.textBody" value="&quot;Delivery with ID &quot; _  context.Delivery.ID _ &quot; email alert&quot;" action="set" />
+<assign property="callrequest" value="context.SendEmailRequest" action="set" />
+</request>
+<response type='Ens.Response' />
+</call>
+</true>
+</if>
+<rule name='CalcNotif' rule='Rules.CalcNotifSleepTime'  resultLocation='context.SleepTime' ruleContext='context' xpos='1280' ypos='1800' >
+<annotation><![CDATA[Calculate the Notification Sleep Time ]]]]><![CDATA[></annotation>
+</rule>
+<assign name="Normalise Sleep Time" property="context.SleepTime" value="$NUMBER(context.SleepTime, 0)" action="set" xpos='1280' ypos='1900' />
+<trace name='Trace Sleep Time' value='context.SleepTime' xpos='1280' ypos='2000' />
+<delay name='Sleep Notification Service' duration='"PT" _ context.SleepTime _ "S"' xpos='1280' ypos='2100' />
+<assign name="Increment NumOfCall" property="context.NumOfCall" value="context.NumOfCall + 1" action="set" xpos='1280' ypos='2200' />
+<trace name='Show Status' value='"Hi, this is the end, rewait for the loop, current status:" _ context.Delivery.status _ " current datetimedifference " _ context.DateTimeDifference' xpos='1280' ypos='2300' />
+</true>
+<false>
+<if name='Check Job Complete' condition='context.Delivery.status = "1"' xpos='200' ypos='1350' xend='200' yend='1850' >
+<true>
+<if name='Check Subscribe to Email Notification' condition='context.Delivery.customer.emailNotification = "1"' xpos='740' ypos='1500' xend='740' yend='1750' >
+<true>
+<call name='Send  Email Service' target='SendEmailNotification' async='1' xpos='875' ypos='1650' >
+<annotation><![CDATA[Send Email that the job has been accepted]]]]><![CDATA[></annotation>
+<request type='Messages.SendEmailRequest' >
+<assign property="callrequest" value="context.SendEmailRequest" action="set" />
+<assign property="callrequest.subject" value="&quot;Your &quot; _ request.type _ &quot; with ID &quot; _ context.Delivery.ID _ &quot; has been accepted!&quot;" action="set" />
+</request>
+</call>
+</true>
+</if>
+</true>
+<false>
+<if name='Check Subscribe to Email Notification' condition='context.Delivery.customer.emailNotification = "1"' xpos='200' ypos='1500' xend='200' yend='1750' >
+<true>
+<call name='Send Email Service' target='SendEmailNotification' async='1' xpos='335' ypos='1650' >
+<annotation><![CDATA[Send Email that the job is expiring or expired]]]]><![CDATA[></annotation>
+<request type='Messages.SendEmailRequest' >
+<assign property="callrequest" value="context.SendEmailRequest" action="set" />
+<assign property="callrequest.subject" value="&quot;Your &quot; _ request.type _ &quot; with ID &quot; _ context.Delivery.ID _ &quot; is expiring/has expired.&quot;" action="set" />
+</request>
+<response type='Ens.Response' />
+</call>
+</true>
+</if>
+</false>
+</if>
+<assign name="Reinitialise Date Time Difference" property="context.DateTimeDifference" value="0" action="set" xpos='200' ypos='1950' >
+<annotation><![CDATA[Reinitialize Date Time Difference so it does not keeps running (looping)]]]]><![CDATA[></annotation>
+</assign>
+</false>
+</if>
+<trace name='Show Status' value='"Hi, this is the end, rewait for the loop, current status:" _ context.Delivery.status _ " current datetimedifference " _ context.DateTimeDifference' xpos='200' ypos='2500' />
+</while>
+</sequence>
+</process>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="Process.DetermineJobSendNotification">
+<Description>
+Determine the Job Notification Logic</Description>
+<Super>Ens.BusinessProcessBPL</Super>
+<TimeChanged>65272,59838.481137</TimeChanged>
+<TimeCreated>65269,40844.847165</TimeCreated>
+
+<XData name="BPL">
+<Description>
+BPL Definition</Description>
+<XMLNamespace>http://www.intersystems.com/bpl</XMLNamespace>
+<Data><![CDATA[
+<process language='objectscript' request='Ens.Request' response='Messages.SendEmailResponse' height='2300' width='2015' >
+<context>
+<property name='SendEmailRequest' type='Messages.SendEmailRequest' instantiate='1' />
+<property name='Job' type='DAO.Job' instantiate='0' />
+<property name='DateTimeDifference' type='%Integer' instantiate='0' />
+<property name='SleepTime' type='%Integer' instantiate='0' />
+<property name='NumOfCall' type='%Integer' initialexpression='0' instantiate='0' />
+<property name='JobType' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='50' />
+</parameters>
+</property>
+</context>
+<sequence xend='200' yend='900' >
+<code name='Set Job Object' xpos='200' ypos='250' >
+<![CDATA[
+  set context.Job = ##class(DAO.Job).%OpenId(request.ID)]]]]><![CDATA[>
+</code>
+<switch name='Check Job Type' xpos='200' ypos='350' xend='200' yend='600' >
+<case condition='request.type = "Pickup"' name='Pickup' >
+<assign name="Set Job Type" property="context.JobType" value="&quot;Pickup&quot;" action="set" xpos='335' ypos='500' />
+</case>
+<case condition='request.type = "Delivery"' name='Delivery' >
+<assign name="Set Job Type" property="context.JobType" value="&quot;Delivery&quot;" action="set" xpos='605' ypos='500' />
+</case>
+<default/>
+</switch>
+<code name='Set DateTimeDifference' xpos='200' ypos='700' >
+<![CDATA[
+  set JobETA = $zdatetimeh(context.Job.ETA, 5)
+  set context.DateTimeDifference = $system.SQL.DATEDIFF("ss", $H, JobETA)
+  ]]]]><![CDATA[>
+</code>
+<while name='Check' condition='(context.Job.status = "0") &amp;&amp; (context.DateTimeDifference &gt; "60")' xpos='200' ypos='800' xend='200' yend='2050' >
+<annotation>Keep looping until delivery status = 1 and datetimedifference is still larger than 60</annotation>
+<code name='Reload Job Data' xpos='200' ypos='250' >
+<![CDATA[
+  set context.Job = ##class(DAO.Job).%OpenId(request.ID)]]]]><![CDATA[>
+</code>
+<transform name='Transform Delivery Content' class='DTL.ConvertJobDeliveryToEmail' source='context.Job' target='context.SendEmailRequest' xpos='200' ypos='350' >
+<annotation><![CDATA[Set Email Content for Job Item]]]]><![CDATA[></annotation>
+</transform>
+<trace name='Trace Status' value='context.Job.status' xpos='200' ypos='450' />
+<code name='Set DateTimeDifference' xpos='200' ypos='550' >
+<![CDATA[
+  set jobETA = $zdatetimeh(context.Job.ETA,5)
+  set context.DateTimeDifference = $system.SQL.DATEDIFF("ss", $H, jobETA)
+  ]]]]><![CDATA[>
+</code>
+<trace name='Trace DateTimeDifferencce' value='context.DateTimeDifference' xpos='200' ypos='650' />
+<if name='Check' condition='(context.Job.status = "0") &amp;&amp; (context.DateTimeDifference &gt; "60")' xpos='200' ypos='750' xend='200' yend='1850' >
+<annotation><![CDATA[Check Status and DateTimeDifference (bigger than 1)]]]]><![CDATA[></annotation>
+<true>
+<if name='subscribe Email' condition='context.Job.driver.driverDetails.emailNotification = "1"' xpos='1280' ypos='900' xend='1280' yend='1250' >
+<true>
+<rule name='Set Job Email Subject' rule='Rules.SetJobMessageSubject'  resultLocation='context.SendEmailRequest.subject' ruleContext='context' xpos='1415' ypos='1050' >
+<annotation><![CDATA[Set the Job Email Subject for driver notification]]]]><![CDATA[></annotation>
+</rule>
+<call name='Send Email Service' target='SendEmailNotification' async='1' xpos='1415' ypos='1150' >
+<request type='Messages.SendEmailRequest' >
+<assign property="callrequest.destinations" value="context.Job.driver.email" action="append" />
+<assign property="callrequest.textBody" value="&quot;Job ID: &quot; _ context.Job.%Id()" action="set" />
+<assign property="callrequest.subject" value="&quot;Job ID: &quot; _ context.Job.%Id()" action="set" />
+<assign property="callrequest" value="context.SendEmailRequest" action="set" />
+</request>
+<response type='Ens.Response' />
+</call>
+</true>
+</if>
+<rule name='CalcNotif' rule='Rules.CalcNotifSleepTime'  resultLocation='context.SleepTime' ruleContext='context' xpos='1280' ypos='1350' >
+<annotation><![CDATA[Calculate the Notification Sleep Time ]]]]><![CDATA[></annotation>
+</rule>
+<assign name="Normalise Sleep Time" property="context.SleepTime" value="$NUMBER(context.SleepTime, 0)" action="set" xpos='1280' ypos='1450' />
+<trace name='Trace Sleep Time' value='context.SleepTime' xpos='1280' ypos='1550' />
+<delay name='Sleep Notification Service' duration='"PT" _ context.SleepTime _ "S"' xpos='1280' ypos='1650' />
+<assign name="Increment NumOfCall" property="context.NumOfCall" value="context.NumOfCall + 1" action="set" xpos='1280' ypos='1750' />
+</true>
+<false>
+<if name='Check Job Completed' condition='context.Job.status = "1"' xpos='200' ypos='900' xend='200' yend='1400' >
+<true>
+<if name='subscribe Email' condition='context.Job.driver.driverDetails.emailNotification = "1"' xpos='740' ypos='1050' xend='740' yend='1300' >
+<true>
+<call name='Send Email Service' target='SendEmailNotification' async='1' xpos='875' ypos='1200' >
+<request type='Messages.SendEmailRequest' >
+<assign property="callrequest" value="context.SendEmailRequest" action="set" />
+<assign property="callrequest.subject" value="&quot;You have confirmed that you have done your job with ID: &quot; _ context.Job.ID _ &quot; Check your income now!&quot;" action="set" />
+</request>
+<response type='Ens.Response' />
+</call>
+</true>
+</if>
+</true>
+<false>
+<if name='subscribe Email' condition='context.Job.driver.driverDetails.emailNotification = "1"' xpos='200' ypos='1050' xend='740' yend='1300' >
+<true>
+<call name='Send Email Service' target='SendEmailNotification' async='1' xpos='202' ypos='1223' >
+<request type='Messages.SendEmailRequest' >
+<assign property="callrequest" value="context.SendEmailRequest" action="set" />
+<assign property="callrequest.subject" value="&quot;Warning! You have failed to mark your job with ID &quot; _ context.Job.ID _  &quot; as completed in time, have you done this request? Your customer might be waiting&quot;" action="set" />
+</request>
+<response type='Ens.Response' />
+</call>
+</true>
+</if>
+</false>
+</if>
+</false>
+</if>
+<trace name='Show Status' value='"Hi, this is the end, rewait for the loop, current status:" _ context.Delivery.status _ " current datetimedifference " _ context.DateTimeDifference' xpos='200' ypos='1950' />
+</while>
+</sequence>
+</process>
+]]></Data>
+</XData>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+</Storage>
+</Class>
+
+
+<Class name="REST.Interoperability.NotificationRESTService">
+<Super>EnsLib.REST.Service</Super>
+<TimeChanged>65271,65705.433533</TimeChanged>
+<TimeCreated>65260,60477.837001</TimeCreated>
+
+<Parameter name="ADAPTER">
+<Default>EnsLib.HTTP.InboundAdapter</Default>
+</Parameter>
+
+<Parameter name="EnsServicePrefix">
+<Default>/notif</Default>
+</Parameter>
+
+<XData name="UrlMap">
+<XMLNamespace>http://www.intersystems.com/urlmap</XMLNamespace>
+<Data><![CDATA[
+<Routes>
+<!-- Start Email -->
+  <Route Url="/email/sendJobNotification" Method="POST" Call="EmailSendJobNotification" />
+  <!-- Stop Email -->
+  <!-- Start SMS -->
+  <Route Url="/sms/sendJobNotification" Method="POST" Call="SMSSendJobNotification" />
+  <!-- Stop SMS -->
+</Routes>
+]]></Data>
+</XData>
+
+<Method name="EmailSendJobNotification">
+<Description>
+EMAIL</Description>
+<FormalSpec>pInput:%Stream.Object,*pOutput:%Stream.Object</FormalSpec>
+<Implementation><![CDATA[
+	set tSC = $$$OK
+	//get all the list of emails to send to and the text body, containing the detail of the new jobs.
+	set data = pInput.Read(,.tSC)
+	if $$$ISERR(tSC) do $System.Status.DisplayError(tSC)
+	
+	set tSendEmailNotif = ##class(Messages.SendEmailRequest).%New()
+	do tSendEmailNotif.%JSONImport(data)
+	// TODO: Need to fix, this is hard code to enable send email from frontend.
+	set tDynamicObject = {}.%FromJSON(data)
+	set tSendEmailNotif.subject = tDynamicObject.subject
+	set st = tSendEmailNotif.textBody.SetAt(tDynamicObject.textBody, "Details")
+	$$$TRACE(st)
+	
+	$$$TRACE(tSendEmailNotif.destinations.GetAt(1))
+	$$$TRACE(tSendEmailNotif.subject)
+	$$$TRACE(tSendEmailNotif.textBody.GetAt("Details"))
+
+	set tSC = ..SendRequestAsync("SendEmailNotification", tSendEmailNotif, .tResponse)
+	
+	quit tSC
+]]></Implementation>
+</Method>
+
+<Method name="SMSSendJobNotification">
+<Description>
+STOP EMAIL
+SMS</Description>
+<FormalSpec>pInput:%Stream.Object,*pOutput:%Stream.Object</FormalSpec>
+<Implementation><![CDATA[
+	set tSC = $$$OK
+	set data = pInput.Read(,.tSC)
+	$$$TRACE(data)
+	$$$TRACE(tSC)
+	
+	if $$$ISERR(tSC) do $System.Status.DisplayError(tSC)
+	
+	set tSendSMSNotif = ##class(Messages.SendSMSRequest).%New()
+	do tSendSMSNotif.%JSONImport(data)
+	
+	$$$TRACE(tSendSMSNotif.to.GetAt(1))
+
+	set tSC = ..SendRequestAsync("SendSMSNotification", tSendSMSNotif, .tResponse)
+	$$$TRACE(tResponse)
+	quit tSC
+]]></Implementation>
+</Method>
+
+<UDLText name="T">
+<Content><![CDATA[
+/// STOP SMS
+
+]]></Content>
+</UDLText>
+</Class>
+
+
+
+
+<Class name="REST.Logistics.impl">
+<Description><![CDATA[
+All CRUD Definition for Community Logistics Project<br/>
+Business logic class defined by OpenAPI in REST.Logistics.spec<br/>
+Updated Sep 12, 2019 10:53:42]]></Description>
+<ProcedureBlock>1</ProcedureBlock>
+<Super>%REST.Impl</Super>
+<TimeChanged>65272,37354.381721</TimeChanged>
+<TimeCreated>65252,40871.428675</TimeCreated>
+
+<Parameter name="ExposeServerExceptions">
+<Description>
+If ExposeServerExceptions is true, then details of internal errors will be exposed.</Description>
+<Default>0</Default>
+</Parameter>
+
+<Method name="Login">
+<Description><![CDATA[
+user login<br/>
+The method arguments hold values for:<br/>
+    userDetails, email and password<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>userDetails:%Stream.Object</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+   	set data = ##class(%DynamicObject).%FromJSON(%request.Content)
+   	set email = data.email
+   	
+   	set password = ##class(%SYSTEM.Encryption).Base64Encode(data.password)
+   	
+   	set userId = ##class(DAO.User).GetUserByEmailAndPassword(email, password)
+   	if (##class(DAO.User).%ExistsId(userId) = 1) {
+	 	set user = ##class(DAO.User).%OpenId(userId, ,.st)
+   		set jsonSt = user.%JSONExportToString(.res)
+   		if (st = 1) {
+	   		QUIT res
+   		}	
+   	} else {
+	 	do ..%SetStatusCode("400")
+	 	QUIT {"message": "Login details is incorrect", "success": 0}.%ToJSON()
+   	}
+]]></Implementation>
+</Method>
+
+<Method name="Register">
+<Description><![CDATA[
+user register<br/>
+The method arguments hold values for:<br/>
+    userDetails, email and password<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>userDetails:%Stream.Object</FormalSpec>
+<ReturnType>%DynamicObject</ReturnType>
+<Implementation><![CDATA[
+    set data = ##class(%DynamicObject).%FromJSON(%request.Content)
+    set data.password = ##class(%SYSTEM.Encryption).Base64Encode(data.password)
+	set user = ##class(DAO.User).%New()
+	
+	set driverDetails = ##class(DAO.Driver).%New()
+	do driverDetails.%JSONImport(data.driverDetails)
+	do user.%JSONImport(data)
+	set iter = data.communities.%GetIterator()
+	while iter.%GetNext(.key , .value ) {
+	   set community = ##class(DAO.Community).%OpenId(value)
+	   do user.communities.Insert(community)
+	   // if driver details does not come from the frontend, driver details should not have any community
+	   // by default driver communities has the community
+	   if (data.driverDetails.availabilities '= "") do driverDetails.communities.Insert(community)
+	}
+	set user.driverDetails = driverDetails
+	
+	set emailExist = ##class(DAO.User).emailIndexExists(data.email,.id)
+	if (emailExist = 1) {
+		do ..%SetStatusCode("404")
+		QUIT {"message": "Failed to register the new user, the email might already have exists or there is a server error", "success": 0}
+	} 
+	do user.%Save()
+	set userRes = ##class(DAO.User).%OpenId(user.%Id())
+	set jsonSt = userRes.%JSONExportToString(.res)
+	QUIT res
+]]></Implementation>
+</Method>
+
+<Method name="GetUser">
+<Description><![CDATA[
+Get user by ID<br/>
+The method arguments hold values for:<br/>
+    userId, userID<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>userId:%Integer</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+    set user = ##class(DAO.User).%OpenId(userId,,.st)
+    if (st = 1) {
+	 	set st = user.%JSONExportToString(.res)
+	 	QUIT res
+    }
+    Do ..%SetStatusCode(404)
+    QUIT {"message": "no user with specified id", "success": false}
+]]></Implementation>
+</Method>
+
+<Method name="DeleteUser">
+<Description><![CDATA[
+Delete User by id<br/>
+The method arguments hold values for:<br/>
+    userId, User id<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>userId:%Integer</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+	
+    QUIT "DELETE USER"
+]]></Implementation>
+</Method>
+
+<Method name="UpdateUser">
+<Description><![CDATA[
+Update User Details<br/>
+The method arguments hold values for:<br/>
+    userId, user id<br/>
+    user, user object<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>userId:%Integer,user:%Stream.Object</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+    set data = ##class(%DynamicObject).%FromJSON(%request.Content)
+    set updatedUser = ##class(DAO.User).%OpenId(userId)
+    
+    do updatedUser.%JSONImport(data)	
+	
+	if (data.communities) {
+		// reset and get all the data from user input in FE.
+		set st = updatedUser.communities.Clear()
+		set iter = data.communities.%GetIterator()
+		while iter.%GetNext(.key , .value ) {
+	   		set community = ##class(DAO.Community).%OpenId(value)
+	   		do updatedUser.communities.Insert(community)
+		}
+	}
+	set st = updatedUser.%Save()
+	
+	if (st = 1) {
+		set userRes = ##class(DAO.User).%OpenId(updatedUser.%Id())
+		set jsonSt = userRes.%JSONExportToString(.res)
+		QUIT res
+	}
+	
+	//QUIT st
+	Do ..%SetStatusCode(406)
+	QUIT {"message": "failed to update user, might be problem with email", "success": 0}
+]]></Implementation>
+</Method>
+
+<Method name="UpdateDriverDetails">
+<Description><![CDATA[
+Update Driver Details<br/>
+The method arguments hold values for:<br/>
+    userId, user id<br/>
+    user, driver object<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>userId:%Integer,user:%Stream.Object</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+    set data = ##class(%DynamicObject).%FromJSON(%request.Content)
+    set updatedUser = ##class(DAO.User).%OpenId(userId)
+    
+    set driverDetails = ##class(DAO.Driver).%New()
+	do driverDetails.%JSONImport(data.driverDetails)
+
+	if (data.driverDetails.communities) {
+		// reset and get all the data from user input in FE.
+		set st = driverDetails.communities.Clear()
+		set iter = data.driverDetails.communities.%GetIterator()
+		while iter.%GetNext(.key , .value ) {
+	   		set community = ##class(DAO.Community).%OpenId(value)
+	   		do driverDetails.communities.Insert(community)
+		}
+	}
+	
+	set updatedUser.driverDetails = driverDetails
+	
+	set st = updatedUser.%Save()
+	
+	if (st = 1) {
+		set userRes = ##class(DAO.User).%OpenId(updatedUser.%Id())
+		set jsonSt = userRes.%JSONExportToString(.res)
+		QUIT res
+	}
+	
+	QUIT st
+]]></Implementation>
+</Method>
+
+<Method name="GetDriverSubscriptEmail">
+<Description><![CDATA[
+Get all available drivers that subscribe for email notif and is part of the community where the job is posted<br/>
+The method arguments hold values for:<br/>
+    communityId, community to filter the group to send email to<br/>
+    requesterId, the user id who send out the request (so he does not get any notification)<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>communityId:%String,requesterId:%String</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+    set data = {"emails": []}
+    &sql(declare EC4 cursor for SELECT email into :email from DAO."User" where driverDetails_emailNotification = 1
+    	AND communities LIKE '%' _ :communityId _ '%' AND ID != :requesterId)
+    &sql(open EC4)
+	for {
+		&sql(fetch EC4)
+		quit:(SQLCODE '= 0)
+		do data.emails.%Push(email)
+	}
+    QUIT data.%ToJSON()
+]]></Implementation>
+</Method>
+
+<Method name="GetCommunities">
+<Description>
+Get all communities</Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec/>
+<ReturnType>%DynamicObject</ReturnType>
+<Implementation><![CDATA[
+
+    set res = {"communities": []}
+	&sql(declare EC cursor for select TO_NUMBER(ID), name into :id, :communityName from DAO.Community)
+	&sql(open EC)
+	for {
+		&sql(fetch EC)
+		quit:(SQLCODE '= 0)
+		set community = {}
+		set community.ID = id
+		set community.name = communityName
+		do res.communities.%Push(community)
+	}
+    QUIT res
+]]></Implementation>
+</Method>
+
+<Method name="GetCommunity">
+<Description><![CDATA[
+Get Dispatch centre by community ID<br/>
+The method arguments hold values for:<br/>
+    communityId, community ID<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>communityId:%Integer</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+    set community = ##class(DAO.Community).%OpenId(communityId, ,.st)
+    set jsonSt = community.%JSONExportToString(.res)
+    if (st = 1) {
+	 	QUIT res
+    }
+    QUIT st
+]]></Implementation>
+</Method>
+
+<Method name="AddCommunity">
+<Description><![CDATA[
+Add new Community<br/>
+The method arguments hold values for:<br/>
+    community, community object<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>community:%Stream.Object</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[    QUIT "ADD COMMUNITY"
+]]></Implementation>
+</Method>
+
+<Method name="DeleteCommunity">
+<Description><![CDATA[
+Delete community by id<br/>
+The method arguments hold values for:<br/>
+    communityId, community id<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>communityId:%Integer</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[    QUIT "DELETE COMMUNITY"
+]]></Implementation>
+</Method>
+
+<Method name="UpdateCommunity">
+<Description><![CDATA[
+Update Community Details<br/>
+The method arguments hold values for:<br/>
+    communityId, community id<br/>
+    community, community object<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>communityId:%Integer,community:%Stream.Object</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[    QUIT "UPDATE COMMUNITY"
+]]></Implementation>
+</Method>
+
+<Method name="GetDispatchCentres">
+<Description>
+Get all dispatch centres</Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec/>
+<ReturnType>%DynamicObject</ReturnType>
+<Implementation><![CDATA[
+   	&sql(declare DC1 cursor for select ID, customer, "date", "time", timeTo, deliveryAddress, pickupAddress into 
+			:id, :customer, :date, :time, :timeTo, :deliveryAddress, :pickupAddress from DAO.Delivery where status=0 and customer != :userId)
+	&sql(open DC1)
+	for {
+		&sql(fetch DC1)
+		quit:(SQLCODE '= 0)
+		set delivery = {}
+		set delivery.ID = id, delivery.date = date, delivery.time = time, delivery.timeTo = timeTo,
+		delivery.deliveryAddress = deliveryAddress, delivery.pickupAddress = pickupAddress
+		do res.deliveries.%Push(delivery)
+	}
+    QUIT res
+]]></Implementation>
+</Method>
+
+<Method name="GetDispatchCentreByCommunity">
+<Description><![CDATA[
+Get Dispatch centre by community ID<br/>
+The method arguments hold values for:<br/>
+    communityId, community ID to filter the closest dispatch centre<br/>
+    day, day to filter the availability of the dispatch centre<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>communityId:%Integer,day:%String</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+	// TODO: FILTER AVAILABILITIES BY DAY.
+    set res = {"dispatchCentres": []}
+    set community = ##class(DAO.Community).%OpenId(communityId)
+    
+    set st = community.%JSONExportToString(.res, "OnlyDispatchCentres")
+    
+    QUIT res
+]]></Implementation>
+</Method>
+
+<Method name="AddDispatchCentre">
+<Description><![CDATA[
+Add new Dispatch Centre<br/>
+The method arguments hold values for:<br/>
+    dispatchcentre, dispatch centre object<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>dispatchcentre:%Stream.Object</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+    set dispatchCentre = ##class(DAO.DispatchCentre).%New()
+
+    do dispatchCentre.%JSONImport(dispatchcentre)
+    set st = dispatchCentre.%Save()
+    
+    if (st = 1) {
+	 	set jsonSt = dispatchCentre.%JSONExportToString(.res)
+	 	QUIT res
+    }
+    
+    QUIT st
+]]></Implementation>
+</Method>
+
+<Method name="DeleteDispatchCentre">
+<Description><![CDATA[
+Delete dispatch centre by id<br/>
+The method arguments hold values for:<br/>
+    centreid, dispatch centre id<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>centreid:%Integer</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+    set st = 0
+	set result = {}
+
+    if centreid '= "", ##class(DAO.DispatchCentre).%ExistsId(centreid) {
+	 	set st = ##class(DAO.DispatchCentre).%DeleteId(centreid)
+	 	do result.%Set("Status", $s($$$ISERR(st):$system.Status.GetOneErrorText(sc),1:"OK"))
+	 	do result.%Set("ID", centreid)
+    } else {
+		do result.%Set("Status", "")
+    }
+
+	QUIT result
+]]></Implementation>
+</Method>
+
+<Method name="UpdateDispatchCentre">
+<Description><![CDATA[
+Update Dispatch Centre<br/>
+The method arguments hold values for:<br/>
+    centreid, dispatch centre id<br/>
+    dispatchcentre, dispatch centre object<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>centreid:%Integer,dispatchcentre:%Stream.Object</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[    QUIT "Update dispatch centre"
+]]></Implementation>
+</Method>
+
+<Method name="GetDispatchCentre">
+<Description><![CDATA[
+Get dispatch centre by id<br/>
+The method arguments hold values for:<br/>
+    centreid, the centre id<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>centreid:%Integer</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+    set dispatchCentre = ##class(DAO.DispatchCentre).%OpenId(centreid, ,.st)
+    set jsonSt = dispatchCentre.%JSONExportToString(.res)
+    if (st = 1) {
+	 	QUIT res
+    }
+    QUIT st
+]]></Implementation>
+</Method>
+
+<Method name="GetDeliveries">
+<Description><![CDATA[
+Get all deliveries<br/>
+The method arguments hold values for:<br/>
+    userId, user ID to filter our the deliveries that this user request<br/>
+    past, past boolean to get past deliveries only<br/>
+    status, status boolean to check if this delivery is already assigned.<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>userId:%Integer,past:%Boolean,status:%Boolean</FormalSpec>
+<ReturnType>%DynamicObject</ReturnType>
+<Implementation><![CDATA[
+    set res = {"deliveries": []}
+    set symbol = ">="
+    if (past) {
+	 	set symbol = "<" 
+    }
+    
+    set myQuery = "SELECT ID, customer->name As customerName, customer->email As customerEmail, ""date"", ""time"", timeTo, deliveryAddress, pickupAddress"
+    set myQuery = myQuery _ " FROM DAO.Delivery WHERE status=? and customer = ? and ""date"" " _ symbol _ " cast(GETDATE() as date)" 
+    set tStatement = ##class(%SQL.Statement).%New()
+     SET tStatement.%SelectMode=2
+    set qStatus = tStatement.%Prepare(myQuery)
+     IF qStatus'=1 {WRITE "%Prepare failed:" DO $System.Status.DisplayError(qStatus) QUIT}
+    set rSet = tStatement.%Execute(status, userId)
+    
+    while rSet.%Next()
+	{
+		set delivery = {}
+		set deliveryID = rSet.ID
+		set delivery.ID = rSet.ID,
+		delivery.date = rSet.date, delivery.time = rSet.time, delivery.timeTo = rSet.timeTo, 
+		delivery.deliveryAddress = rSet.deliveryAddress, delivery.pickupAddress = rSet.pickupAddress
+		// if it is an ongoing delivery request (not past and accepted by a driver)
+		
+		if (past = 0 && status = 1) {
+			do ##class(Helper.Functions).SetJobDetailsToAcceptedDelivery(delivery, deliveryID)
+    	}
+    	
+		do res.deliveries.%Push(delivery)
+	}
+	QUIT res.%ToJSON()
+]]></Implementation>
+</Method>
+
+<Method name="AddDelivery">
+<Description><![CDATA[
+Add new Delivery<br/>
+The method arguments hold values for:<br/>
+    dispatchcentre, Delivery object<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>dispatchcentre:%Stream.Object</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+    set data = ##class(%DynamicObject).%FromJSON(%request.Content)
+	set delivery = ##class(DAO.Delivery).GetDeliveryFromJSON(data)
+
+	set st = delivery.%Save()
+	// Create the business service for the object
+	do ##class(DAO.Delivery).CreateDeliveryMonitoringService(delivery)
+	
+	set jsonSt = delivery.%JSONExportToString(.res)
+	if (st = 1) {
+		QUIT res
+	}
+
+	QUIT st
+]]></Implementation>
+</Method>
+
+<Method name="DeleteDelivery">
+<Description><![CDATA[
+Delete Delivery by id<br/>
+The method arguments hold values for:<br/>
+    deliveryId, Delivery id<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>deliveryId:%Integer</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+    set result = {}
+	set sc = 0
+
+	if deliveryID '= "", ##class(DAO.Delivery).%ExistsId(deliveryID) {
+		set sc = ##class(DAO.Delivery).%DeleteId(deliveryID)
+		do result.%Set("Status", $s($$$ISERR(sc):$system.Status.GetOneErrorText(sc),1:"OK"))
+	} else {
+		do result.%Set("Status", "")
+	}
+
+	write result.%ToJSON
+
+	return sc
+]]></Implementation>
+</Method>
+
+<Method name="UpdateDelivery">
+<Description><![CDATA[
+Update Delivery Details<br/>
+The method arguments hold values for:<br/>
+    deliveryId, dispatch centre id<br/>
+    dispatchcentre, dispatch centre object<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>deliveryId:%Integer,dispatchcentre:%Stream.Object</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+    set data = ##class(%DynamicObject).%FromJSON(%request.Content)
+	set delivery = ##class(DAO.Delivery).%OpenId(deliveryId)
+	do delivery.%JSONImport(data)
+	set st = delivery.%Save()
+	
+	if (st = 1) {
+		set jsonSt = delivery.%JSONExportToString(.res)
+		QUIT res
+	}
+	QUIT st
+]]></Implementation>
+</Method>
+
+<Method name="GetDelivery">
+<Description><![CDATA[
+Get Delivery Details<br/>
+The method arguments hold values for:<br/>
+    deliveryId, dispatch centre id<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>deliveryId:%Integer</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+    set delivery = ##class(DAO.Delivery).%OpenId(deliveryId, ,.st)
+    set jsonSt = delivery.%JSONExportToString(.res)
+    if (st = 1) {
+	 	QUIT res  
+    }
+    
+    QUIT st
+]]></Implementation>
+</Method>
+
+<Method name="GetDeliveryPriceQuote">
+<Description><![CDATA[
+Get Price quote<br/>
+The method arguments hold values for:<br/>
+    deliveryAddress, the final destination of the sending address<br/>
+    pickupAddress, the address to pickup the item to be delivered (home address)<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>deliveryAddress:%String,pickupAddress:%String</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+    set price=$RANDOM(25)+($RANDOM(10)/10)
+    
+    set res = {}, res.price = price
+    
+    // TODO: Call places API distance calculator using deliveryAddress and PickupAddress
+    
+    // TODO 2: Call API for price quoting in Australia for distane like Uber etc.
+    
+    
+    QUIT res
+]]></Implementation>
+</Method>
+
+<Method name="GetUnassignedJobs">
+<Description><![CDATA[
+Get Unassigned Jobs (Pickup and Deliveries)<br/>
+The method arguments hold values for:<br/>
+    userId, the user id to filter out the jobs that this user request (so this user(driver) can't see it as a job)<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>userId:%String</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+    set res = {"deliveries": [], "pickups": []}
+    set res.deliveries = ##class(DAO.Delivery).GetUnassignedDeliveries(userId)
+    set res.pickups = ##class(DAO.Pickup).GetUnassignedPickups(userId)
+    
+    QUIT res.%ToJSON()
+]]></Implementation>
+</Method>
+
+<Method name="GetDriverJobs">
+<Description><![CDATA[
+Get all driver jobs (jobs is exclusive to driver only)<br/>
+The method arguments hold values for:<br/>
+    driverId, driver ID to filter our the jobs of the driver<br/>
+    jobStatus, boolean to determine whether the job is completed or not.<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>driverId:%Integer,jobStatus:%Boolean</FormalSpec>
+<ReturnType>%DynamicObject</ReturnType>
+<Implementation><![CDATA[
+    set user = ##class(DAO.User).%OpenId(driverId, ,.st)
+    set res = {"deliveries": [], "pickups": []}
+    #SQLCompile Select=Display
+	&sql(declare DJ1 cursor for select ID, delivery, pickup, ETA into
+		:id, :delivery, :pickup, :ETA from DAO.Job 
+		where driver = :driverId and status = :jobStatus)
+	&sql(open DJ1)
+	for {
+		&sql(fetch DJ1)
+		quit:(SQLCODE '= 0)
+		if (delivery) {
+			set newDelivery = {}
+			&sql(select customer->name, customer->email, customer->phoneNumber,
+				deliveryAddress, pickupAddress, "date", "time", timeTo 
+				into :name, :email, :phoneNumber, :deliveryAddress, :pickupAddress,
+				:date, :time, :timeTo from dao.delivery where ID = :delivery)
+			set newDelivery.ID = id, newDelivery.customerName = name, 
+			newDelivery.customerEmail = email, newDelivery.customerPhoneNumber = phoneNumber,
+			newDelivery.deliveryAddress = deliveryAddress, newDelivery.pickupAddress = pickupAddress,
+			newDelivery.date = date, newDelivery.time = time, newDelivery.timeTo = timeTo
+			do res.deliveries.%Push(newDelivery)
+		}
+		if (pickup) {
+			set newPickup = {}
+			&sql(select customer->name, customer->email, customer->phoneNumber,
+				pickupAddress, "date", "time", timeTo, deliverySlipID 
+				into :name, :email, :phoneNumber, :pickupAddress,
+				:date, :time, :timeTo, :deliverySlipID from dao.pickup where ID = :pickup)
+			set newPickup.ID = id, newPickup.customerName = name, newPickup.customerEmail = email, 
+			newPickup.customerPhoneNumber = phoneNumber, newPickup.pickupAddress = pickupAddress,
+			newPickup.date = date, newPickup.time = time, newPickup.timeTo = timeTo,
+			newPickup.deliverySlipID = deliverySlipID
+			do res.pickups.%Push(newPickup)
+		}
+	}
+	QUIT res
+
+    Do ..%SetStatusCode(404)
+    QUIT {"message": "driver with specified id is not found", "success": 0}
+]]></Implementation>
+</Method>
+
+<Method name="AddJob">
+<Description><![CDATA[
+Add new Dispatch Centre<br/>
+The method arguments hold values for:<br/>
+    job, job object (require user(driver) id and delivery id)<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>job:%Stream.Object</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+    set data = ##class(%DynamicObject).%FromJSON(%request.Content)
+    set job = ##class(DAO.Job).%New()
+    
+    do job.%JSONImport(data)
+#;    set job.ETA = data.ETA
+#;    
+#;    zw job
+    
+    if (data.deliveryId) {
+	    // TODO: Logic might be too confusing
+	    set delivery = ##class(DAO.Delivery).%OpenId(data.deliveryId)
+	    set driver = ##class(DAO.User).%OpenId(data.driverId)
+	    if (delivery.status = 0) {
+		    set job.delivery = delivery
+		    set job.driver = driver
+		    do driver.driverDetails.jobs.Insert(job)
+		    set delivery.status = 1
+		    set st = job.%Save()
+		    do ##class(DAO.Job).CreateJobMonitoringService(job, "Delivery")
+		    if (st = 1) {
+			    set jsonSt = job.%JSONExportToString(.res)
+			    QUIT res
+	    	}
+	    }
+	    
+	    
+	    
+	    else {
+		    do ..%SetStatusCode(400)
+		    QUIT {"message": "the delivery has been assigned to someone else", "success": 0}
+	    }
+    }
+    
+     if (data.pickupId) {
+	 	set pickup = ##class(DAO.Pickup).%OpenId(data.pickupId)
+	    set driver = ##class(DAO.User).%OpenId(data.driverId)
+	    if (pickup.status = 0) {
+		    set job.pickup = pickup
+		    set job.driver = driver
+		    do driver.driverDetails.jobs.Insert(job)
+		    set pickup.status = 1
+		    set st = job.%Save()
+		    do ##class(DAO.Job).CreateJobMonitoringService(job, "Pickup")
+		    if (st = 1) {
+			    set jsonSt = job.%JSONExportToString(.res)
+			    QUIT res
+	    	}
+	    }
+	    
+	    else {
+		    do ..%SetStatusCode(400)
+		    QUIT {"message": "the pickup task has been assigned to someone else", "success": 0}
+	    } 
+    }
+]]></Implementation>
+</Method>
+
+<Method name="DeleteJob">
+<Description><![CDATA[
+Delete job by id<br/>
+The method arguments hold values for:<br/>
+    jobId, job id<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>jobId:%Integer</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[    QUIT "DELETE JOB"
+]]></Implementation>
+</Method>
+
+<Method name="UpdateJob">
+<Description><![CDATA[
+Update Job by ID<br/>
+The method arguments hold values for:<br/>
+    jobId, the job id<br/>
+    job, job object<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>jobId:%Integer,job:%Stream.Object</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[    QUIT "UPDATE JOB (UPDATE ETA?)"
+]]></Implementation>
+</Method>
+
+<Method name="UpdateJobStatus">
+<Description><![CDATA[
+update job status by id<br/>
+The method arguments hold values for:<br/>
+    jobId, job id<br/>
+    job, job object (at least require status)<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>jobId:%Integer,job:%Stream.Object</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+    set data = ##class(%DynamicObject).%FromJSON(%request.Content)
+    set job = ##class(DAO.Job).%OpenId(jobId,,.st)
+
+    if (st = 1) {
+	    set job.status = data.status
+	    set st = job.%Save()
+	    // use for notification utility
+	    if (job.delivery '= "") set st = job.delivery.customer.%JSONExportToString(.customer)
+	    if (job.pickup '= "") set st = job.pickup.customer.%JSONExport(.customer)
+	    QUIT customer
+    }
+    
+    QUIT {"message": "job with specified id was not found", "success": false}
+]]></Implementation>
+</Method>
+
+<Method name="GetJob">
+<Description><![CDATA[
+Get job by id<br/>
+The method arguments hold values for:<br/>
+    jobId, the job id<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>jobId:%Integer</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+    //(Place business logic here)
+    //Do ..%SetStatusCode(<HTTP_status_code>)
+    //Do ..%SetHeader(<name>,<value>)
+    //Quit (Place response here) ; response may be a string, stream or dynamic object
+    QUIT "Get JOB Details BY ID"
+]]></Implementation>
+</Method>
+
+<Method name="GetPickups">
+<Description><![CDATA[
+Get all pickups request for this customer id<br/>
+The method arguments hold values for:<br/>
+    customerId, customer ID to get only the the pickups for this customer<br/>
+    past, past boolean to get past deliveries only<br/>
+    status, status boolean to check if this delivery is already assigned.<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>customerId:%Integer,past:%Boolean,status:%Boolean</FormalSpec>
+<ReturnType>%DynamicObject</ReturnType>
+<Implementation><![CDATA[
+    set res = {"pickups": []}
+    set symbol = ">="
+    if (past) {
+	 	set symbol = "<" 
+    }
+    
+    set myQuery = "SELECT ID, customer->name As customerName, customer->email As customerEmail, ""date"", ""time"", timeTo, pickupAddress"
+    set myQuery = myQuery _ " FROM DAO.Pickup WHERE status=? and customer = ? and ""date"" " _ symbol _ " cast(GETDATE() as date)" 
+    set tStatement = ##class(%SQL.Statement).%New()
+    set tStatement.%SelectMode=2
+    set qStatus = tStatement.%Prepare(myQuery)
+     IF qStatus'=1 {WRITE "%Prepare failed:" DO $System.Status.DisplayError(qStatus) QUIT}
+    set rSet = tStatement.%Execute(status, customerId)
+    
+    while rSet.%Next()
+	{
+		set pickup = {}
+		set pickupID = rSet.ID
+		set pickup.ID = pickupID, 
+		pickup.date = rSet.date, pickup.time = rSet.time, 
+		pickup.timeTo = rSet.timeTo, pickup.pickupAddress = rSet.pickupAddress
+		
+		if (past = 0 && status = 1) {
+			do ##class(Helper.Functions).SetJobDetailsToAcceptedPickup(pickup, pickupID)	
+		}
+		do res.pickups.%Push(pickup)
+	}
+	QUIT res.%ToJSON()
+]]></Implementation>
+</Method>
+
+<Method name="AddPickup">
+<Description><![CDATA[
+Add new pickup item (request)<br/>
+The method arguments hold values for:<br/>
+    pickup, Pickup object<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>pickup:%Stream.Object</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+    set data = ##class(%DynamicObject).%FromJSON(%request.Content)
+
+	set pickup = ##class(DAO.Pickup).%New()
+	
+	do pickup.%JSONImport(data)
+	
+	set pickup.customer = ##class(DAO.User).%OpenId(data.customerId)
+	
+	set st = pickup.%Save()
+	
+	// Create the business service for the object
+	do ##class(DAO.Pickup).CreatePickupMonitoringService(pickup)
+	
+	set jsonSt = pickup.%JSONExportToString(.res)
+	if (st = 1) {
+		QUIT res
+	}
+
+	QUIT st
+]]></Implementation>
+</Method>
+
+<Method name="DeletePickup">
+<Description><![CDATA[
+Delete Pickup by id<br/>
+The method arguments hold values for:<br/>
+    pickupId, Pickup id<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>pickupId:%Integer</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[    QUIT "Delete Pickup Job By User (if accepted by driver should not be able to be deleted"
+]]></Implementation>
+</Method>
+
+<Method name="UpdatePickup">
+<Description><![CDATA[
+Update Pickup Details<br/>
+The method arguments hold values for:<br/>
+    pickupId, dispatch centre id<br/>
+    pickup, pickup object<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>pickupId:%Integer,pickup:%Stream.Object</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+    set oldPickup = ##class(DAO.Pickup).%OpenId(pickupId, ,.st)
+    
+    if (st = 1) {
+	    set data = ##class(%DynamicObject).%FromJSON(%request.Content)
+	 	do oldPickup.%JSONImport(data)
+	 	set st = oldPickup.%Save()
+	 	
+	 	if (st = 1) {
+		 	set jsonSt = oldPickup.%JSONExportToString(.res)
+		 	QUIT res	
+	 	}
+    }
+    QUIT "Update pickup method failed!"
+]]></Implementation>
+</Method>
+
+<Method name="GetPickup">
+<Description><![CDATA[
+Get Pickup Details<br/>
+The method arguments hold values for:<br/>
+    pickupId, pickup id<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>pickupId:%Integer</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+    set pickup = ##class(DAO.Pickup).%OpenId(pickupId, ,.st)
+    set jsonSt = pickup.%JSONExportToString(.res)
+    if (st = 1) {
+	 	QUIT res  
+    }
+    
+    QUIT st
+]]></Implementation>
+</Method>
+
+<Method name="GetAvailableDrivers">
+<Description><![CDATA[
+Get all available drivers in a certain timeframe and that is part of the community that this task is posted in.<br/>
+The method arguments hold values for:<br/>
+    day, day to filter the day availability<br/>
+    timeFrom, time from range<br/>
+    timeTo, time to range<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>day:%String,timeFrom:%String,timeTo:%String</FormalSpec>
+<ReturnType>%DynamicObject</ReturnType>
+<Implementation><![CDATA[
+    set timeFrom = $ztimeh(timeFrom)
+    set timeTo = $ztimeh(timeTo)
+    set res = {"drivers": []}
+    set myQuery = "SELECT name, driverDetails_availabilities_"_day_"_from AS availableFrom, driverDetails_availabilities_"_day_"_to AS availableTo"
+    set myQuery = myQuery_" FROM DAO.""USER"" WHERE driverDetails_availabilities_"_day_"_from <= ? AND driverDetails_availabilities_"_day_"_to >= ?"
+
+    set tStatement = ##class(%SQL.Statement).%New()
+    set qStatus = tStatement.%Prepare(myQuery)
+     IF qStatus'=1 {WRITE "%Prepare failed:" DO $System.Status.DisplayError(qStatus) QUIT}
+    set rSet = tStatement.%Execute(timeFrom, timeTo)
+
+	while rSet.%Next()
+	{
+		set driver = {}
+		set driver.name = rSet.name
+		set driver.availableFrom = $ZTIME(rSet.availableFrom, 2)
+		set driver.availableTo = $ZTIME(rSet.availableTo, 2)
+		do res.drivers.%Push(driver)
+	}
+	QUIT res.%ToJSON()
+]]></Implementation>
+</Method>
+
+<Method name="GetDriverSubscriptSMS">
+<Description><![CDATA[
+Get all available drivers that subscribe for sms notif and is part of the community where the job is posted<br/>
+The method arguments hold values for:<br/>
+    communityId, community to filter the group to send email to<br/>
+    requesterId, the user id who send out the request (so he does not get any notification)<br/>]]></Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec>communityId:%String,requesterId:%String</FormalSpec>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+    set data = {"phoneNumber": []}
+    &sql(declare SS1 cursor for SELECT phoneNumber into :phoneNumber from DAO."User" where driverDetails_smsNotification = 1
+    	AND communities LIKE '%' _ :communityId _ '%' AND ID != :requesterId)
+    &sql(open SS1)
+	for {
+		&sql(fetch SS1)
+		quit:(SQLCODE '= 0)
+		do data.phoneNumber.%Push(phoneNumber)
+	}
+    QUIT data.%ToJSON()
+]]></Implementation>
+</Method>
+
+<Method name="PopulateCommunities">
+<Description>
+Populate communities</Description>
+<ClassMethod>1</ClassMethod>
+<FormalSpec/>
+<ReturnType>%Stream.Object</ReturnType>
+<Implementation><![CDATA[
+    set data = ##class(%DynamicObject).%FromJSON(%request.Content)
+    set iter = data.geonames.%GetIterator()
+	while iter.%GetNext(.key , .value ) {
+		set community = ##class(DAO.Community).%New()
+		do community.%JSONImport(value)
+		set st = community.%Save()
+	}
+    quit st
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="REST.Logistics.spec">
+<ProcedureBlock>1</ProcedureBlock>
+<Super>%REST.Spec</Super>
+<TimeChanged>65268,39222.804262</TimeChanged>
+<TimeCreated>65252,40871.380856</TimeCreated>
+
+<XData name="OpenAPI">
+<MimeType>application/json</MimeType>
+<Data><![CDATA[
+{
+  "swagger":"2.0",
+  "info":{
+    "title":"Community Logistics Project",
+    "version":"1.0.0",
+    "description":"All CRUD Definition for Community Logistics Project"
+  },
+  "paths":{
+    "/login":{
+      "post":{
+        "summary":"user login",
+        "operationId":"Login",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/User"
+            }
+          },
+          "400":{
+            "description":"Bad request. Invalid email and password"
+          },
+          "401":{
+            "description":"Authorization information is missing or invalid"
+          },
+          "404":{
+            "description":"User with specified email and password is not found"
+          },
+          "default":{
+            "description":"unexpected error."
+          }
+        },
+        "parameters":[
+          {
+            "in":"body",
+            "description":"email and password",
+            "required":true,
+            "name":"userDetails",
+            "schema":{
+              "type":"object",
+              "required":[
+                "email",
+                "password"
+              ],
+              "properties":{
+                "email":{
+                  "type":"string"
+                },
+                "password":{
+                  "type":"string"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/register":{
+      "post":{
+        "summary":"user register",
+        "operationId":"Register",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/User"
+            }
+          },
+          "400":{
+            "description":"Bad request. Invalid email and password"
+          },
+          "401":{
+            "description":"Authorization information is missing or invalid"
+          },
+          "404":{
+            "description":"User with specified email and password is not found"
+          },
+          "default":{
+            "description":"unexpected error."
+          }
+        },
+        "parameters":[
+          {
+            "in":"body",
+            "description":"email and password",
+            "required":true,
+            "name":"userDetails",
+            "schema":{
+              "type":"object",
+              "required":[
+                "email",
+                "password"
+              ],
+              "properties":{
+                "email":{
+                  "type":"string"
+                },
+                "password":{
+                  "type":"string"
+                },
+                "driverDetails":{
+                  "type":"object"
+                },
+                "communities":{
+                  "type":"object"
+                }
+              }
+            }
+          }
+        ],
+        "produces":[
+          "application/json"
+        ]
+      }
+    },
+    "/user/driverDetails/{userId}":{
+      "put":{
+        "summary":"Update Driver Details",
+        "operationId":"UpdateDriverDetails",
+        "responses":{
+          "200":{
+            "description":"success"
+          }
+        },
+        "parameters":[
+          {
+            "in":"path",
+            "description":"user id",
+            "required":true,
+            "name":"userId",
+            "type":"integer"
+          },
+          {
+            "in":"body",
+            "description":"driver object",
+            "required":true,
+            "name":"user",
+            "schema":{
+              "$ref":"#/definitions/User"
+            }
+          }
+        ]
+      }
+    },
+    "/user/{userId}":{
+      "delete":{
+        "summary":"Delete User by id",
+        "operationId":"DeleteUser",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/User"
+            }
+          }
+        },
+        "parameters":[
+          {
+            "in":"path",
+            "description":"User id",
+            "required":true,
+            "name":"userId",
+            "type":"integer"
+          }
+        ]
+      },
+      "put":{
+        "summary":"Update User Details",
+        "operationId":"UpdateUser",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/User"
+            }
+          }
+        },
+        "parameters":[
+          {
+            "in":"path",
+            "description":"user id",
+            "required":true,
+            "name":"userId",
+            "type":"integer"
+          },
+          {
+            "in":"body",
+            "description":"user object",
+            "required":true,
+            "name":"user",
+            "schema":{
+              "$ref":"#/definitions/User"
+            }
+          }
+        ]
+      },
+      "get":{
+        "summary":"Get user by ID",
+        "operationId":"GetUser",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/User"
+            }
+          }
+        },
+        "parameters":[
+          {
+            "in":"path",
+            "name":"userId",
+            "description":"userID",
+            "required":true,
+            "type":"integer"
+          }
+        ]
+      }
+    },
+    "/driver/{driverId}/jobs":{
+      "get":{
+        "summary":"Get all driver jobs (jobs is exclusive to driver only)",
+        "operationId":"GetDriverJobs",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/Jobs"
+            }
+          },
+          "204":{
+            "description":"successful in getting data, but no jobs were found."
+          },
+          "401":{
+            "description":"Authorization information is missing or invalid"
+          },
+          "404":{
+            "description":"the specified user id is not found"
+          },
+          "default":{
+            "description":"unexpected error."
+          }
+        },
+        "parameters":[
+          {
+            "in":"path",
+            "name":"driverId",
+            "description":"driver ID to filter our the jobs of the driver",
+            "required":true,
+            "type":"integer"
+          },
+          {
+            "in":"query",
+            "name":"jobStatus",
+            "description":"boolean to determine whether the job is completed or not.",
+            "required":true,
+            "type":"boolean"
+          }
+        ],
+        "produces":[
+          "application/json"
+        ]
+      }
+    },
+    "/driver/findByAvailability":{
+      "get":{
+        "summary":"Get all available drivers in a certain timeframe and that is part of the community that this task is posted in.",
+        "operationId":"GetAvailableDrivers",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/User"
+            }
+          }
+        },
+        "parameters":[
+          {
+            "in":"query",
+            "name":"day",
+            "description":"day to filter the day availability",
+            "required":true,
+            "type":"string"
+          },
+          {
+            "in":"query",
+            "name":"timeFrom",
+            "description":"time from range",
+            "required":true,
+            "type":"string"
+          },
+          {
+            "in":"query",
+            "name":"timeTo",
+            "description":"time to range",
+            "required":true,
+            "type":"string"
+          }
+        ],
+        "produces":[
+          "application/json"
+        ]
+      }
+    },
+    "/driver/subscriptEmail":{
+      "get":{
+        "summary":"Get all available drivers that subscribe for email notif and is part of the community where the job is posted",
+        "operationId":"GetDriverSubscriptEmail",
+        "responses":{
+          "204":{
+            "description":"email was sent successfully"
+          },
+          "401":{
+            "description":"authorization information is missing or invalid"
+          },
+          "default":{
+            "description":"unexpected error."
+          }
+        },
+        "parameters":[
+          {
+            "in":"query",
+            "description":"community to filter the group to send email to",
+            "name":"communityId",
+            "required":true,
+            "type":"string"
+          },
+          {
+            "in":"query",
+            "description":"the user id who send out the request (so he does not get any notification)",
+            "name":"requesterId",
+            "required":true,
+            "type":"string"
+          }
+        ]
+      }
+    },
+    "/driver/subscriptSMS":{
+      "get":{
+        "summary":"Get all available drivers that subscribe for sms notif and is part of the community where the job is posted",
+        "operationId":"GetDriverSubscriptSMS",
+        "responses":{
+          "204":{
+            "description":"sms was sent successfully"
+          },
+          "401":{
+            "description":"authorization information is missing or invalid"
+          },
+          "default":{
+            "description":"unexpected error."
+          }
+        },
+        "parameters":[
+          {
+            "in":"query",
+            "description":"community to filter the group to send email to",
+            "name":"communityId",
+            "required":true,
+            "type":"string"
+          },
+          {
+            "in":"query",
+            "description":"the user id who send out the request (so he does not get any notification)",
+            "name":"requesterId",
+            "required":true,
+            "type":"string"
+          }
+        ]
+      }
+    },
+    "/deliveries/{userId}":{
+      "get":{
+        "summary":"Get all deliveries",
+        "operationId":"GetDeliveries",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/Deliveries"
+            }
+          }
+        },
+        "parameters":[
+          {
+            "in":"path",
+            "name":"userId",
+            "description":"user ID to filter our the deliveries that this user request",
+            "required":true,
+            "type":"integer"
+          },
+          {
+            "in":"query",
+            "name":"past",
+            "description":"past boolean to get past deliveries only",
+            "type":"boolean",
+            "default":0
+          },
+          {
+            "in":"query",
+            "name":"status",
+            "description":"status boolean to check if this delivery is already assigned.",
+            "type":"boolean",
+            "default":0
+          }
+        ],
+        "produces":[
+          "application/json"
+        ]
+      }
+    },
+    "/delivery":{
+      "post":{
+        "summary":"Add new Delivery",
+        "operationId":"AddDelivery",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/Delivery"
+            }
+          },
+          "201":{
+            "description":"created"
+          }
+        },
+        "parameters":[
+          {
+            "in":"body",
+            "description":"Delivery object",
+            "required":true,
+            "name":"dispatchcentre",
+            "schema":{
+              "$ref":"#/definitions/DispatchCentre"
+            }
+          }
+        ]
+      }
+    },
+    "/delivery/{deliveryId}":{
+      "delete":{
+        "summary":"Delete Delivery by id",
+        "operationId":"DeleteDelivery",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/Delivery"
+            }
+          }
+        },
+        "parameters":[
+          {
+            "in":"path",
+            "description":"Delivery id",
+            "required":true,
+            "name":"deliveryId",
+            "type":"integer"
+          }
+        ]
+      },
+      "put":{
+        "summary":"Update Delivery Details",
+        "operationId":"UpdateDelivery",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/Delivery"
+            }
+          }
+        },
+        "parameters":[
+          {
+            "in":"path",
+            "description":"dispatch centre id",
+            "required":true,
+            "name":"deliveryId",
+            "type":"integer"
+          },
+          {
+            "in":"body",
+            "description":"dispatch centre object",
+            "required":true,
+            "name":"dispatchcentre",
+            "schema":{
+              "$ref":"#/definitions/Delivery"
+            }
+          }
+        ]
+      },
+      "get":{
+        "summary":"Get Delivery Details",
+        "operationId":"GetDelivery",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/Delivery"
+            }
+          }
+        },
+        "parameters":[
+          {
+            "in":"path",
+            "description":"dispatch centre id",
+            "required":true,
+            "name":"deliveryId",
+            "type":"integer"
+          }
+        ]
+      }
+    },
+    "/quote/delivery":{
+      "get":{
+        "summary":"Get Price quote",
+        "operationId":"GetDeliveryPriceQuote",
+        "responses":{
+          "200":{
+            "description":"success"
+          },
+          "400":{
+            "description":"bad request"
+          }
+        },
+        "parameters":[
+          {
+            "in":"query",
+            "name":"deliveryAddress",
+            "description":"the final destination of the sending address",
+            "required":true,
+            "type":"string"
+          },
+          {
+            "in":"query",
+            "name":"pickupAddress",
+            "description":"the address to pickup the item to be delivered (home address)",
+            "required":true,
+            "type":"string"
+          }
+        ]
+      }
+    },
+    "/communities":{
+      "get":{
+        "summary":"Get all communities",
+        "operationId":"GetCommunities",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/Communities"
+            }
+          }
+        },
+        "produces":[
+          "application/json"
+        ]
+      },
+      "post":{
+        "summary":"Populate communities",
+        "operationId":"PopulateCommunities",
+        "responses":{
+          "200":{
+            "description":"success"
+          },
+          "400":{
+            "description":"bad request"
+          }
+        }
+      }
+    },
+    "/communities/{communityId}":{
+      "get":{
+        "summary":"Get Dispatch centre by community ID",
+        "operationId":"GetCommunity",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/Community"
+            }
+          }
+        },
+        "parameters":[
+          {
+            "in":"path",
+            "name":"communityId",
+            "description":"community ID",
+            "required":true,
+            "type":"integer"
+          }
+        ]
+      }
+    },
+    "/community":{
+      "post":{
+        "summary":"Add new Community",
+        "operationId":"AddCommunity",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/Community"
+            }
+          },
+          "201":{
+            "description":"created"
+          }
+        },
+        "parameters":[
+          {
+            "in":"body",
+            "description":"community object",
+            "required":true,
+            "name":"community",
+            "schema":{
+              "$ref":"#/definitions/Community"
+            }
+          }
+        ]
+      }
+    },
+    "/community/{communityId}":{
+      "delete":{
+        "summary":"Delete community by id",
+        "operationId":"DeleteCommunity",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/Community"
+            }
+          }
+        },
+        "parameters":[
+          {
+            "in":"path",
+            "description":"community id",
+            "required":true,
+            "name":"communityId",
+            "type":"integer"
+          }
+        ]
+      },
+      "put":{
+        "summary":"Update Community Details",
+        "operationId":"UpdateCommunity",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/Community"
+            }
+          }
+        },
+        "parameters":[
+          {
+            "in":"path",
+            "description":"community id",
+            "required":true,
+            "name":"communityId",
+            "type":"integer"
+          },
+          {
+            "in":"body",
+            "description":"community object",
+            "required":true,
+            "name":"community",
+            "schema":{
+              "$ref":"#/definitions/Community"
+            }
+          }
+        ]
+      }
+    },
+    "/dispatchcentres":{
+      "get":{
+        "summary":"Get all dispatch centres",
+        "operationId":"GetDispatchCentres",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/DispatchCentres"
+            }
+          }
+        },
+        "produces":[
+          "application/json"
+        ]
+      }
+    },
+    "/dispatchcentres/{communityId}":{
+      "get":{
+        "summary":"Get Dispatch centre by community ID",
+        "operationId":"GetDispatchCentreByCommunity",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/DispatchCentres"
+            }
+          }
+        },
+        "parameters":[
+          {
+            "in":"path",
+            "name":"communityId",
+            "description":"community ID to filter the closest dispatch centre",
+            "required":true,
+            "type":"integer"
+          },
+          {
+            "in":"query",
+            "name":"day",
+            "description":"day to filter the availability of the dispatch centre",
+            "type":"string"
+          }
+        ]
+      }
+    },
+    "/dispatchcentre":{
+      "post":{
+        "summary":"Add new Dispatch Centre",
+        "operationId":"AddDispatchCentre",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/DispatchCentre"
+            }
+          },
+          "201":{
+            "description":"created"
+          }
+        },
+        "parameters":[
+          {
+            "in":"body",
+            "description":"dispatch centre object",
+            "required":true,
+            "name":"dispatchcentre",
+            "schema":{
+              "$ref":"#/definitions/DispatchCentre"
+            }
+          }
+        ]
+      }
+    },
+    "/jobs/{userId}":{
+      "get":{
+        "summary":"Get Unassigned Jobs (Pickup and Deliveries)",
+        "operationId":"GetUnassignedJobs",
+        "responses":{
+          "200":{
+            "description":"success"
+          },
+          "404":{
+            "description":"no dispatch centre was found."
+          }
+        },
+        "parameters":[
+          {
+            "in":"path",
+            "name":"userId",
+            "description":"the user id to filter out the jobs that this user request (so this user(driver) can't see it as a job)",
+            "required":true,
+            "type":"string"
+          }
+        ]
+      }
+    },
+    "/dispatchcentre/{centreid}":{
+      "delete":{
+        "summary":"Delete dispatch centre by id",
+        "operationId":"DeleteDispatchCentre",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/DispatchCentre"
+            }
+          }
+        },
+        "parameters":[
+          {
+            "in":"path",
+            "description":"dispatch centre id",
+            "required":true,
+            "name":"centreid",
+            "type":"integer"
+          }
+        ]
+      },
+      "put":{
+        "summary":"Update Dispatch Centre",
+        "operationId":"UpdateDispatchCentre",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/DispatchCentre"
+            }
+          }
+        },
+        "parameters":[
+          {
+            "in":"path",
+            "description":"dispatch centre id",
+            "required":true,
+            "name":"centreid",
+            "type":"integer"
+          },
+          {
+            "in":"body",
+            "description":"dispatch centre object",
+            "required":true,
+            "name":"dispatchcentre",
+            "schema":{
+              "$ref":"#/definitions/DispatchCentre"
+            }
+          }
+        ]
+      },
+      "get":{
+        "summary":"Get dispatch centre by id",
+        "operationId":"GetDispatchCentre",
+        "parameters":[
+          {
+            "name":"centreid",
+            "in":"path",
+            "description":"the centre id",
+            "required":true,
+            "type":"integer"
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/DispatchCentre"
+            }
+          }
+        }
+      }
+    },
+    "/job":{
+      "post":{
+        "summary":"Add new Dispatch Centre",
+        "operationId":"AddJob",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/Job"
+            }
+          },
+          "201":{
+            "description":"created"
+          }
+        },
+        "parameters":[
+          {
+            "in":"body",
+            "description":"job object (require user(driver) id and delivery id)",
+            "required":true,
+            "name":"job",
+            "schema":{
+              "$ref":"#/definitions/Job"
+            }
+          }
+        ]
+      }
+    },
+    "/job/{jobId}":{
+      "delete":{
+        "summary":"Delete job by id",
+        "operationId":"DeleteJob",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/Job"
+            }
+          }
+        },
+        "parameters":[
+          {
+            "in":"path",
+            "description":"job id",
+            "required":true,
+            "name":"jobId",
+            "type":"integer"
+          }
+        ]
+      },
+      "put":{
+        "summary":"Update Job by ID",
+        "operationId":"UpdateJob",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/Job"
+            }
+          }
+        },
+        "parameters":[
+          {
+            "in":"path",
+            "description":"the job id",
+            "required":true,
+            "name":"jobId",
+            "type":"integer"
+          },
+          {
+            "in":"body",
+            "description":"job object",
+            "required":true,
+            "name":"job",
+            "schema":{
+              "$ref":"#/definitions/Job"
+            }
+          }
+        ]
+      },
+      "patch":{
+        "summary":"update job status by id",
+        "operationId":"UpdateJobStatus",
+        "responses":{
+          "200":{
+            "description":"success"
+          }
+        },
+        "parameters":[
+          {
+            "in":"path",
+            "description":"job id",
+            "required":true,
+            "name":"jobId",
+            "type":"integer"
+          },
+          {
+            "in":"body",
+            "description":"job object (at least require status)",
+            "required":true,
+            "name":"job",
+            "schema":{
+              "$ref":"#/definitions/Job"
+            }
+          }
+        ]
+      },
+      "get":{
+        "summary":"Get job by id",
+        "operationId":"GetJob",
+        "parameters":[
+          {
+            "name":"jobId",
+            "in":"path",
+            "description":"the job id",
+            "required":true,
+            "type":"integer"
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/Job"
+            }
+          }
+        }
+      }
+    },
+    "/pickups/{customerId}":{
+      "get":{
+        "summary":"Get all pickups request for this customer id",
+        "operationId":"GetPickups",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/Pickups"
+            }
+          }
+        },
+        "parameters":[
+          {
+            "in":"path",
+            "name":"customerId",
+            "description":"customer ID to get only the the pickups for this customer",
+            "required":true,
+            "type":"integer"
+          },
+          {
+            "in":"query",
+            "name":"past",
+            "description":"past boolean to get past deliveries only",
+            "type":"boolean",
+            "default":0
+          },
+          {
+            "in":"query",
+            "name":"status",
+            "description":"status boolean to check if this delivery is already assigned.",
+            "type":"boolean",
+            "default":0
+          }
+        ],
+        "produces":[
+          "application/json"
+        ]
+      }
+    },
+    "/pickup":{
+      "post":{
+        "summary":"Add new pickup item (request)",
+        "operationId":"AddPickup",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/Pickup"
+            }
+          },
+          "201":{
+            "description":"created"
+          }
+        },
+        "parameters":[
+          {
+            "in":"body",
+            "description":"Pickup object",
+            "required":true,
+            "name":"pickup",
+            "schema":{
+              "$ref":"#/definitions/Pickup"
+            }
+          }
+        ]
+      }
+    },
+    "/pickup/{pickupId}":{
+      "delete":{
+        "summary":"Delete Pickup by id",
+        "operationId":"DeletePickup",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/Pickup"
+            }
+          }
+        },
+        "parameters":[
+          {
+            "in":"path",
+            "description":"Pickup id",
+            "required":true,
+            "name":"pickupId",
+            "type":"integer"
+          }
+        ]
+      },
+      "put":{
+        "summary":"Update Pickup Details",
+        "operationId":"UpdatePickup",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/Pickup"
+            }
+          }
+        },
+        "parameters":[
+          {
+            "in":"path",
+            "description":"dispatch centre id",
+            "required":true,
+            "name":"pickupId",
+            "type":"integer"
+          },
+          {
+            "in":"body",
+            "description":"pickup object",
+            "required":true,
+            "name":"pickup",
+            "schema":{
+              "$ref":"#/definitions/Pickup"
+            }
+          }
+        ]
+      },
+      "get":{
+        "summary":"Get Pickup Details",
+        "operationId":"GetPickup",
+        "responses":{
+          "200":{
+            "description":"success",
+            "schema":{
+              "$ref":"#/definitions/Pickup"
+            }
+          }
+        },
+        "parameters":[
+          {
+            "in":"path",
+            "description":"pickup id",
+            "required":true,
+            "name":"pickupId",
+            "type":"integer"
+          }
+        ]
+      }
+    }
+  },
+  "definitions":{
+    "Community":{
+      "type":"object",
+      "properties":{
+        "id":{
+          "type":"integer"
+        },
+        "name":{
+          "type":"string"
+        },
+        "users":{
+          "$ref":"#/definitions/Users"
+        },
+        "dispatchcentre":{
+          "$ref":"#/definitions/DispatchCentre"
+        }
+      }
+    },
+    "Communities":{
+      "type":"array",
+      "items":{
+        "$ref":"#/definitions/Community"
+      }
+    },
+    "User":{
+      "type":"object",
+      "properties":{
+        "id":{
+          "type":"integer"
+        }
+      }
+    },
+    "Users":{
+      "type":"array",
+      "items":{
+        "$ref":"#/definitions/User"
+      }
+    },
+    "DispatchCentre":{
+      "type":"object",
+      "properties":{
+        "address":{
+          "type":"string"
+        },
+        "open":{
+          "type":"string"
+        },
+        "close":{
+          "type":"string"
+        }
+      }
+    },
+    "DispatchCentres":{
+      "type":"array",
+      "items":{
+        "$ref":"#/definitions/DispatchCentre"
+      }
+    },
+    "DriverDetails":{
+      "type":"object",
+      "properties":{
+        "availability":{
+          "type":"string"
+        },
+        "notification":{
+          "type":"boolean"
+        }
+      }
+    },
+    "Delivery":{
+      "type":"object",
+      "properties":{
+        "id":{
+          "type":"integer"
+        },
+        "name":{
+          "type":"string"
+        },
+        "users":{
+          "$ref":"#/definitions/Users"
+        },
+        "dispatchcentre":{
+          "$ref":"#/definitions/DispatchCentre"
+        }
+      }
+    },
+    "Deliveries":{
+      "type":"array",
+      "items":{
+        "$ref":"#/definitions/Delivery"
+      }
+    },
+    "Job":{
+      "type":"object",
+      "properties":{
+        "delivery":{
+          "$ref":"#/definitions/Delivery"
+        }
+      }
+    },
+    "Jobs":{
+      "type":"array",
+      "items":{
+        "$ref":"#/definitions/Job"
+      }
+    },
+    "Pickup":{
+      "type":"object",
+      "properties":{
+        "address":{
+          "type":"string"
+        }
+      }
+    },
+    "Pickups":{
+      "type":"array",
+      "items":{
+        "$ref":"#/definitions/Pickup"
+      }
+    }
+  },
+  "schemes":[
+    "https"
+  ],
+  "basePath":"/limyandi/Community/1.0.0"
+}
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="Service.MonitorAddedDelivery">
+<Super>Ens.BusinessService</Super>
+<TimeChanged>65268,52949.359772</TimeChanged>
+<TimeCreated>65267,50182.390755</TimeCreated>
+
+<UDLText name="T">
+<Content><![CDATA[
+// Parameter ADAPTER = "Ens.InboundAdapter";
+
+]]></Content>
+</UDLText>
+
+<Method name="OnProcessInput">
+<FormalSpec>pInput:Messages.NotificationRequest,*pOutput:%RegisteredObject</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	$$$TRACE(pInput.ID)
+	set sc = ..SendRequestAsync("DetermineDeliverySendNotification", pInput)
+	quit $$$OK
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="Service.MonitorAddedJob">
+<Super>Ens.BusinessService</Super>
+<TimeChanged>65269,48091.148041</TimeChanged>
+<TimeCreated>65268,34721.996039</TimeCreated>
+
+<UDLText name="T">
+<Content><![CDATA[
+// Parameter ADAPTER = "Ens.InboundAdapter";
+
+]]></Content>
+</UDLText>
+
+<Method name="OnProcessInput">
+<FormalSpec>pInput:DAO.Job,*pOutput:%RegisteredObject</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	$$$TRACE(pInput.ID)
+	set sc = ..SendRequestAsync("DetermineJobSendNotification", pInput)
+	quit $$$OK
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="Service.MonitorAddedPickup">
+<Super>Ens.BusinessService</Super>
+<TimeChanged>65269,58172.078167</TimeChanged>
+<TimeCreated>65268,33763.065644</TimeCreated>
+
+<UDLText name="T">
+<Content><![CDATA[
+// Parameter ADAPTER = "Ens.InboundAdapter";
+
+]]></Content>
+</UDLText>
+
+<Method name="OnProcessInput">
+<FormalSpec>pInput:DAO.Pickup,*pOutput:%RegisteredObject</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	$$$TRACE(pInput.ID)
+	set sc = ..SendRequestAsync("DetermineDeliverySendNotification", pInput)
+	quit $$$OK
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="Utils.ObjectGenerator">
+<Abstract>1</Abstract>
+<TimeChanged>65247,52050.578543</TimeChanged>
+<TimeCreated>65246,40884.555896</TimeCreated>
+
+<Method name="FromDynamicObject">
+<ClassMethod>1</ClassMethod>
+<CodeMode>objectgenerator</CodeMode>
+<FormalSpec>dynobj:%DynamicObject</FormalSpec>
+<ReturnType>Test.Generator</ReturnType>
+<Implementation><![CDATA[
+    do %code.WriteLine(" set obj = ..%New()")
+    for i=1:1:%class.Properties.Count() {
+        set prop = %class.Properties.GetAt(i)
+        do %code.WriteLine(" if dynobj.%IsDefined("""_$ZCONVERT(prop.Name, "l")_""") {")
+        do %code.WriteLine("   set obj."_prop.Name_" = dynobj."_$ZCONVERT(prop.Name, "l"))
+        do %code.WriteLine(" }")
+    }
+
+    do %code.WriteLine(" quit obj")
+    quit $$$OK
+]]></Implementation>
+</Method>
+
+<Method name="ToDynamicObject">
+<ClassMethod>1</ClassMethod>
+<CodeMode>objectgenerator</CodeMode>
+<FormalSpec>objectID:%Integer,dynobj:%DynamicObject</FormalSpec>
+<ReturnType>Test.Generator</ReturnType>
+<Implementation><![CDATA[
+	do %code.WriteLine(" set obj = ..%OpenId(objectID)")
+	
+	for i=1:1:%class.Properties.Count() {
+		set prop = %class.Properties.GetAt(i)
+        do %code.WriteLine(" if (obj."_$ZCONVERT(prop.Name, "w")_"'= """") {")
+        do %code.WriteLine("   set dynobj."_$ZCONVERT(prop.Name, "l")_" = obj."_$ZCONVERT(prop.Name, "w"))
+        do %code.WriteLine(" }")
+	}
+
+	do %code.WriteLine(" quit obj")
+	quit $$$OK
+]]></Implementation>
+</Method>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DataLocation>^Utils.ObjectGeneratorD</DataLocation>
+<DefaultData>ObjectGeneratorDefaultData</DefaultData>
+<IdLocation>^Utils.ObjectGeneratorD</IdLocation>
+<IndexLocation>^Utils.ObjectGeneratorI</IndexLocation>
+<StreamLocation>^Utils.ObjectGeneratorS</StreamLocation>
+<Data name="ObjectGeneratorDefaultData">
+<Value name="1">
+<Value>%%CLASSNAME</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="Utils.Populate">
+<TimeChanged>65265,42913.905855</TimeChanged>
+<TimeCreated>65244,44323.167666</TimeCreated>
+
+<Method name="Populate">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>Num:%Integer=10</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	//do ##class(DAO.Driver).Populate(Num)
+	do ##class(DAO.DispatchCentre).Populate(Num)
+#;	do ##class(DAO.Community).Populate(Num) 
+	do ##class(DAO.User).Populate(Num)
+	do ##class(DAO.Delivery).Populate(Num)
+	do ##class(DAO.Pickup).Populate(Num) 
+	do ##class(DAO.Job).Populate(Num) 
+
+
+	// do ##class(DAO.UserRole).Populate(Num)
+]]></Implementation>
+</Method>
+
+<Method name="KillExtent">
+<ClassMethod>1</ClassMethod>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	//do ##class(DAO.Driver).%KillExtent()
+	do ##class(DAO.User).%KillExtent()
+	do ##class(DAO.DispatchCentre).%KillExtent()
+#;	do ##class(DAO.Community).%KillExtent()
+	do ##class(DAO.Delivery).%KillExtent()
+	do ##class(DAO.Pickup).%KillExtent()
+	do ##class(DAO.Job).%KillExtent()
+	// do ##class(DAO.UserRole).%KillExtent()
+]]></Implementation>
+</Method>
+
+<Method name="CreateNew">
+<ClassMethod>1</ClassMethod>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	set mockData = {}
+	set user = ##class(DAO.User).%OpenId(1), mockData.user = user
+	set community = ##class(DAO.Community).%OpenId(1), mockData.community = community
+	set dispatchCentre = ##class(DAO.DispatchCentre).%OpenId(1), mockData.dispatchCentre = dispatchCentre
+	set delivery = ##class(DAO.Delivery).%OpenId(1), mockData.delivery = delivery
+	set job = ##class(DAO.Job).%OpenId(1), mockData.job = job
+	return mockData
+]]></Implementation>
+</Method>
+</Class>
+</Export>
