@@ -6,10 +6,9 @@ EnCasa (Logistics Community Project) Built with InterSystems IRIS
 
 1. To Deploy the project, open `InterSystems Studio` and import both cloned XML files by navigating to `Tools->Import Local`. N.B. Create one namespace for each cloned XML data
 2. Create a new IRIS Instance and then create a new namespace
-3. Go to IRIS Management Portal and create a new Web Application `System Administration=>Security=>Applications=>Web Applications=>Create New Web Applications`. Name it anything you like, For the enable, choose REST Radio Button and Put in REST.logistics.disp as the dispatch class (keep all of the rest options).
+3. Go to IRIS Management Portal and create a new Web Application `System Administration=>Security=>Applications=>Web Applications=>Create New Web Applications`. Call it '/logistics', and for the enable section, choose REST Radio Button and Put in REST.logistics.disp as the dispatch class (keep all of the rest options).
 4. Populate all the new Communities with the following POST Request:
 {{YOUR_IRIS_INSTANCE_SERVER}}/logistics/communities
-hahaha
 
 
 
