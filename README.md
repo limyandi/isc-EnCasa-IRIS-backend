@@ -4,13 +4,18 @@ EnCasa (Logistics Community Project) Built with InterSystems IRIS
 
 ## Getting Started
 
-To Deploy the project, open `InterSystems Studio` and import both cloned XML files by navigating to `Tools->Import Local`
+To Deploy the project, open `InterSystems Studio` and import both cloned XML files by navigating to `Tools->Import Local`.
+
+N.B. Create one namespace for each cloned XML data.
 
 ### Prerequisites
 
 ```
 1. InterSystems Studio (https://download.intersystems.com/download/login.csp)
+2. Populate all the new Communities with the following POST Request:
+{{YOUR_IRIS_INSTANCE_SERVER}}/logistics/communities
 ```
+The Body Request: [communities.json](communities.json)
 
 ### Testing
 
