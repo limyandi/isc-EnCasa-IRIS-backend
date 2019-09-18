@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Export generator="IRIS" version="26" zv="IRIS for Windows (x86-64) 2019.1 (Build 510U)" ts="2019-09-18 14:44:23">
+<Export generator="IRIS" version="26" zv="IRIS for Windows (x86-64) 2019.1 (Build 510U)" ts="2019-09-18 16:17:11">
 <Class name="DAO.BaseDeliveryPickup">
 <Abstract>1</Abstract>
 <TimeChanged>65262,45671.384184</TimeChanged>
@@ -1038,7 +1038,7 @@
 </Class>
 
 
-<Project name="EnCasa" LastModified="2019-09-18 14:40:27.850149">
+<Project name="EnCasa" LastModified="2019-09-18 16:17:04.785485">
   <Items>
     <ProjectItem name="DAO.BaseDeliveryPickup" type="CLS"></ProjectItem>
     <ProjectItem name="DAO.Community" type="CLS"></ProjectItem>
@@ -1064,8 +1064,10 @@
     <ProjectItem name="Service.MonitorAddedDelivery" type="CLS"></ProjectItem>
     <ProjectItem name="Service.MonitorAddedJob" type="CLS"></ProjectItem>
     <ProjectItem name="Service.MonitorAddedPickup" type="CLS"></ProjectItem>
+    <ProjectItem name="Test.Generator" type="CLS"></ProjectItem>
     <ProjectItem name="Utils.ObjectGenerator" type="CLS"></ProjectItem>
     <ProjectItem name="Utils.Populate" type="CLS"></ProjectItem>
+    <ProjectItem name="Messages.NotificationRequest" type="CLS"></ProjectItem>
   </Items>
 </Project>
 
@@ -1334,6 +1336,44 @@ Also, any extra <var>pData</var> arguments you supply will be assigned to the la
 </Production>
 ]]></Data>
 </XData>
+</Class>
+
+
+<Class name="Messages.NotificationRequest">
+<Language>objectscript</Language>
+<Super>Ens.Request,%JSON.Adaptor</Super>
+<TimeChanged>65268,52694.946036</TimeChanged>
+<TimeCreated>65268,52687.720164</TimeCreated>
+
+<UDLText name="T">
+<Content><![CDATA[
+// LIST OF DESTINATIONS?
+
+]]></Content>
+</UDLText>
+
+<Property name="ID">
+<Type>%Integer</Type>
+</Property>
+
+<Property name="type">
+<Type>%String</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DefaultData>NotificationRequestDefaultData</DefaultData>
+<Data name="NotificationRequestDefaultData">
+<Structure>listnode</Structure>
+<Subscript>"NotificationRequest"</Subscript>
+<Value name="1">
+<Value>ID</Value>
+</Value>
+<Value name="2">
+<Value>type</Value>
+</Value>
+</Data>
+</Storage>
 </Class>
 
 
@@ -1969,10 +2009,10 @@ SMS</Description>
 <Description><![CDATA[
 All CRUD Definition for Community Logistics Project<br/>
 Business logic class defined by OpenAPI in REST.Logistics.spec<br/>
-Updated Sep 12, 2019 10:53:42]]></Description>
+Updated Sep 18, 2019 16:15:08]]></Description>
 <ProcedureBlock>1</ProcedureBlock>
 <Super>%REST.Impl</Super>
-<TimeChanged>65272,37354.381721</TimeChanged>
+<TimeChanged>65274,58508.276976</TimeChanged>
 <TimeCreated>65252,40871.428675</TimeCreated>
 
 <Parameter name="ExposeServerExceptions">
@@ -4207,7 +4247,7 @@ Populate communities</Description>
 
 <Class name="Service.MonitorAddedDelivery">
 <Super>Ens.BusinessService</Super>
-<TimeChanged>65268,52949.359772</TimeChanged>
+<TimeChanged>65274,58363.105152</TimeChanged>
 <TimeCreated>65267,50182.390755</TimeCreated>
 
 <UDLText name="T">
@@ -4218,7 +4258,7 @@ Populate communities</Description>
 </UDLText>
 
 <Method name="OnProcessInput">
-<FormalSpec>pInput:Messages.NotificationRequest,*pOutput:%RegisteredObject</FormalSpec>
+<FormalSpec>pInput:Messages.SendEmailRequest,*pOutput:%RegisteredObject</FormalSpec>
 <ReturnType>%Status</ReturnType>
 <Implementation><![CDATA[
 	$$$TRACE(pInput.ID)
@@ -4274,6 +4314,39 @@ Populate communities</Description>
 	quit $$$OK
 ]]></Implementation>
 </Method>
+</Class>
+
+
+<Class name="Test.Generator">
+<Super>%Persistent</Super>
+<TimeChanged>65246,40801.036768</TimeChanged>
+<TimeCreated>65246,40774.655488</TimeCreated>
+
+<Method name="Test">
+<ClassMethod>1</ClassMethod>
+<CodeMode>objectgenerator</CodeMode>
+<ReturnType>%String</ReturnType>
+<Implementation><![CDATA[
+    do %code.WriteLine(" write ""This is a method Generator!"",!")
+    do %code.WriteLine(" quit ""Done!""")
+
+    quit $$$OK
+]]></Implementation>
+</Method>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DataLocation>^Test.GeneratorD</DataLocation>
+<DefaultData>GeneratorDefaultData</DefaultData>
+<IdLocation>^Test.GeneratorD</IdLocation>
+<IndexLocation>^Test.GeneratorI</IndexLocation>
+<StreamLocation>^Test.GeneratorS</StreamLocation>
+<Data name="GeneratorDefaultData">
+<Value name="1">
+<Value>%%CLASSNAME</Value>
+</Value>
+</Data>
+</Storage>
 </Class>
 
 
