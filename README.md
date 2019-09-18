@@ -19,6 +19,8 @@ The Body Request: [communities.json](communities.json)
 
 OPTIONAL:
 To Use the Email Utility, you will have to go to IRIS management portal and set up the credentials.
+
+
 5. Once you are in Management Portal, navigate to `Interoperability=>Configure=>Production`. Or, if nothing exists, navigate to `Interoperability=>List=>Productions` and choose Logistics.CommunityLogisticsProject and open it. 
 6. You should see the SendEmailNotification below Operations section, click that, and go to settings. 
 7. Enable the settings, and then fill in:
