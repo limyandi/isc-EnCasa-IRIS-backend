@@ -1,0 +1,2585 @@
+{
+    "totalResultsCount": 129,
+    "geonames": [
+        {
+            "adminCode1": "02",
+            "longitude": "146.95684",
+            "geocodeID": 2178173,
+            "toponymName": "Albury Municipality",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 50243,
+            "countryCode": "AU",
+            "name": "Albury Municipality",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-36.01494",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.94013",
+            "geocodeID": 12047270,
+            "toponymName": "Armidale Regional",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 0,
+            "countryCode": "AU",
+            "name": "Armidale Regional",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-30.41247",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "153.48568",
+            "geocodeID": 7839686,
+            "toponymName": "Ballina",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 41335,
+            "countryCode": "AU",
+            "name": "Ballina",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-28.85273",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "143.56384",
+            "geocodeID": 7839687,
+            "toponymName": "Balranald",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 2371,
+            "countryCode": "AU",
+            "name": "Balranald",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-34.67839",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "149.51956",
+            "geocodeID": 7839689,
+            "toponymName": "Bathurst Regional",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 41051,
+            "countryCode": "AU",
+            "name": "Bathurst Regional",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.4731",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "149.7206",
+            "geocodeID": 7839691,
+            "toponymName": "Bega Valley",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 33313,
+            "countryCode": "AU",
+            "name": "Bega Valley",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-36.81646",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "152.72492",
+            "geocodeID": 7839692,
+            "toponymName": "Bellingen",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 12854,
+            "countryCode": "AU",
+            "name": "Bellingen",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-30.37394",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "145.66984",
+            "geocodeID": 7839693,
+            "toponymName": "Berrigan",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 8365,
+            "countryCode": "AU",
+            "name": "Berrigan",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-35.75192",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "146.92718",
+            "geocodeID": 7839695,
+            "toponymName": "Bland",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 6010,
+            "countryCode": "AU",
+            "name": "Bland",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.91904",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "149.13046",
+            "geocodeID": 7839696,
+            "toponymName": "Blayney",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 7330,
+            "countryCode": "AU",
+            "name": "Blayney",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.61653",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "150.41293",
+            "geocodeID": 2175228,
+            "toponymName": "Blue Mountains Municipality",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 79225,
+            "countryCode": "AU",
+            "name": "Blue Mountains Municipality",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.63203",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "146.90617",
+            "geocodeID": 7839697,
+            "toponymName": "Bogan",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 3037,
+            "countryCode": "AU",
+            "name": "Bogan",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-31.57012",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.19874",
+            "geocodeID": 7839700,
+            "toponymName": "Botany Bay",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 43292,
+            "countryCode": "AU",
+            "name": "Botany Bay",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.9466",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "145.3616",
+            "geocodeID": 7839701,
+            "toponymName": "Bourke",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 2996,
+            "countryCode": "AU",
+            "name": "Bourke",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-29.99584",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "147.1476",
+            "geocodeID": 7839702,
+            "toponymName": "Brewarrina",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 1940,
+            "countryCode": "AU",
+            "name": "Brewarrina",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-29.95055",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "141.43333",
+            "geocodeID": 2173910,
+            "toponymName": "Broken Hill Municipality",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 19048,
+            "countryCode": "AU",
+            "name": "Broken Hill Municipality",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-31.95",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.10481",
+            "geocodeID": 7839703,
+            "toponymName": "Burwood",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 35298,
+            "countryCode": "AU",
+            "name": "Burwood",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.88536",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "153.51667",
+            "geocodeID": 2172879,
+            "toponymName": "Byron Shire",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 31612,
+            "countryCode": "AU",
+            "name": "Byron Shire",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-28.61667",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "148.82694",
+            "geocodeID": 7839704,
+            "toponymName": "Cabonne",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 13695,
+            "countryCode": "AU",
+            "name": "Cabonne",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.11076",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "150.72521",
+            "geocodeID": 7839705,
+            "toponymName": "Camden",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 63248,
+            "countryCode": "AU",
+            "name": "Camden Council",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-34.0161",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "150.83333",
+            "geocodeID": 2172583,
+            "toponymName": "Campbelltown Municipality",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 154538,
+            "countryCode": "AU",
+            "name": "Campbelltown Municipality",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-34.08333",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.11591",
+            "geocodeID": 7839706,
+            "toponymName": "Canada Bay",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 84906,
+            "countryCode": "AU",
+            "name": "Canada Bay",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.8659",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.06556",
+            "geocodeID": 12047280,
+            "toponymName": "Canterbury-Bankstown",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 0,
+            "countryCode": "AU",
+            "name": "Canterbury-Bankstown",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.9239",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "145.42523",
+            "geocodeID": 7839708,
+            "toponymName": "Carrathool",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 2792,
+            "countryCode": "AU",
+            "name": "Carrathool",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.62571",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.26683",
+            "geocodeID": 12047281,
+            "toponymName": "Central Coast",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 0,
+            "countryCode": "AU",
+            "name": "Central Coast",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.30718",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "143.62569",
+            "geocodeID": 7839709,
+            "toponymName": "Central Darling",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 2070,
+            "countryCode": "AU",
+            "name": "Central Darling",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-31.77155",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.21234",
+            "geocodeID": 7839710,
+            "toponymName": "Cessnock",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 54313,
+            "countryCode": "AU",
+            "name": "Cessnock",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-32.89391",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "150.86253",
+            "geocodeID": 7839694,
+            "toponymName": "Blacktown",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 325185,
+            "countryCode": "AU",
+            "name": "City of Blacktown",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.74016",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "152.78156",
+            "geocodeID": 7839711,
+            "toponymName": "Clarence Valley",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 51043,
+            "countryCode": "AU",
+            "name": "Clarence Valley",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-29.69444",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "145.36063",
+            "geocodeID": 7839712,
+            "toponymName": "Cobar",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 5024,
+            "countryCode": "AU",
+            "name": "Cobar",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-31.96613",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "153.03262",
+            "geocodeID": 7839713,
+            "toponymName": "Coffs Harbour",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 71798,
+            "countryCode": "AU",
+            "name": "Coffs Harbour",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-30.17294",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "147.13707",
+            "geocodeID": 7839715,
+            "toponymName": "Coolamon",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 4276,
+            "countryCode": "AU",
+            "name": "Coolamon",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-34.60046",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "148.29053",
+            "geocodeID": 7839717,
+            "toponymName": "Coonamble",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 4279,
+            "countryCode": "AU",
+            "name": "Coonamble",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-30.86714",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "148.78346",
+            "geocodeID": 7839720,
+            "toponymName": "Cowra",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 12551,
+            "countryCode": "AU",
+            "name": "Cowra",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.81138",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "150.96703",
+            "geocodeID": 12047282,
+            "toponymName": "Cumberland",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 0,
+            "countryCode": "AU",
+            "name": "Cumberland",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.83665",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.61122",
+            "geocodeID": 7839358,
+            "toponymName": "Dungog",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 8884,
+            "countryCode": "AU",
+            "name": "Dungog",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-32.34619",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "144.98411",
+            "geocodeID": 12047283,
+            "toponymName": "Edward River",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 0,
+            "countryCode": "AU",
+            "name": "Edward River",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-35.23373",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "149.9278",
+            "geocodeID": 7839359,
+            "toponymName": "Eurobodalla",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 37234,
+            "countryCode": "AU",
+            "name": "Eurobodalla",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-35.93307",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "150.90105",
+            "geocodeID": 7839360,
+            "toponymName": "Fairfield",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 201427,
+            "countryCode": "AU",
+            "name": "Fairfield",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.86742",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "146.22946",
+            "geocodeID": 12047284,
+            "toponymName": "Federation",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 0,
+            "countryCode": "AU",
+            "name": "Federation",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-35.46093",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "147.86448",
+            "geocodeID": 7839361,
+            "toponymName": "Forbes",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 9664,
+            "countryCode": "AU",
+            "name": "Forbes",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.37898",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.09006",
+            "geocodeID": 12047285,
+            "toponymName": "Georges River",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 0,
+            "countryCode": "AU",
+            "name": "Georges River",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.97265",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "148.70354",
+            "geocodeID": 7839362,
+            "toponymName": "Gilgandra",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 4488,
+            "countryCode": "AU",
+            "name": "Gilgandra",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-31.63297",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.93957",
+            "geocodeID": 7839363,
+            "toponymName": "Glen Innes Severn",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 8905,
+            "countryCode": "AU",
+            "name": "Glen Innes Severn",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-29.63116",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "149.902",
+            "geocodeID": 7839364,
+            "toponymName": "Goulburn Mulwaree",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 29230,
+            "countryCode": "AU",
+            "name": "Goulburn Mulwaree",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-34.9025",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "147.19731",
+            "geocodeID": 7839366,
+            "toponymName": "Greater Hume Shire",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 0,
+            "countryCode": "AU",
+            "name": "Greater Hume Shire",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-35.75837",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "146.02295",
+            "geocodeID": 7839723,
+            "toponymName": "Griffith",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 25425,
+            "countryCode": "AU",
+            "name": "Griffith",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-34.33448",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "148.13457",
+            "geocodeID": 7839724,
+            "toponymName": "Gundagai",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 3747,
+            "countryCode": "AU",
+            "name": "Gundagai",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-35.02623",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "150.11548",
+            "geocodeID": 7839725,
+            "toponymName": "Gunnedah",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 12688,
+            "countryCode": "AU",
+            "name": "Gunnedah",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-31.02404",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "150.53813",
+            "geocodeID": 7839727,
+            "toponymName": "Gwydir",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 5104,
+            "countryCode": "AU",
+            "name": "Gwydir",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-29.49806",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "150.783",
+            "geocodeID": 7839729,
+            "toponymName": "Hawkesbury",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 65114,
+            "countryCode": "AU",
+            "name": "Hawkesbury",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.34078",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "144.83826",
+            "geocodeID": 7839730,
+            "toponymName": "Hay",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 2962,
+            "countryCode": "AU",
+            "name": "Hay",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-34.54276",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "148.56343",
+            "geocodeID": 12047274,
+            "toponymName": "Hilltops",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 0,
+            "countryCode": "AU",
+            "name": "Hilltops",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-34.41563",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.10953",
+            "geocodeID": 2163136,
+            "toponymName": "Hornsby Shire",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 166855,
+            "countryCode": "AU",
+            "name": "Hornsby Shire",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.58315",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.1451",
+            "geocodeID": 7839732,
+            "toponymName": "Hunters Hill",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 14491,
+            "countryCode": "AU",
+            "name": "Hunters Hill",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.83437",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.1454",
+            "geocodeID": 12047275,
+            "toponymName": "Inner West",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 0,
+            "countryCode": "AU",
+            "name": "Inner West",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.88999",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.04187",
+            "geocodeID": 7839734,
+            "toponymName": "Inverell",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 16727,
+            "countryCode": "AU",
+            "name": "Inverell",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-29.31526",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "147.63131",
+            "geocodeID": 7839736,
+            "toponymName": "Junee",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 6227,
+            "countryCode": "AU",
+            "name": "Junee",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-34.81518",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "152.68608",
+            "geocodeID": 7839737,
+            "toponymName": "Kempsey",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 29361,
+            "countryCode": "AU",
+            "name": "Kempsey",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-30.90553",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "150.84572",
+            "geocodeID": 7839738,
+            "toponymName": "Kiama",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 21047,
+            "countryCode": "AU",
+            "name": "Kiama",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-34.67124",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.14877",
+            "geocodeID": 7839740,
+            "toponymName": "Ku-ring-gai",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 119027,
+            "countryCode": "AU",
+            "name": "Ku-ring-gai Council",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.72701",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "152.77871",
+            "geocodeID": 7839741,
+            "toponymName": "Kyogle",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 9538,
+            "countryCode": "AU",
+            "name": "Kyogle",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-28.64643",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "146.87556",
+            "geocodeID": 7839742,
+            "toponymName": "Lachlan",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 6748,
+            "countryCode": "AU",
+            "name": "Lachlan",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-32.79999",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.5347",
+            "geocodeID": 2160746,
+            "toponymName": "Lake Macquarie Shire",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 200796,
+            "countryCode": "AU",
+            "name": "Lake Macquarie Shire",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.03756",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.17028",
+            "geocodeID": 7839743,
+            "toponymName": "Lane Cove",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 33996,
+            "countryCode": "AU",
+            "name": "Lane Cove",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.82321",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "146.26918",
+            "geocodeID": 7839744,
+            "toponymName": "Leeton",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 11539,
+            "countryCode": "AU",
+            "name": "Leeton",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-34.52967",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "153.26667",
+            "geocodeID": 2160061,
+            "toponymName": "Lismore Municipality",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 44637,
+            "countryCode": "AU",
+            "name": "Lismore Municipality",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-28.8",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "150.18584",
+            "geocodeID": 7839746,
+            "toponymName": "Lithgow",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 21118,
+            "countryCode": "AU",
+            "name": "Lithgow",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.32025",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "150.91232",
+            "geocodeID": 7839747,
+            "toponymName": "Liverpool",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 195355,
+            "countryCode": "AU",
+            "name": "Liverpool",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.92418",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "150.42001",
+            "geocodeID": 7839748,
+            "toponymName": "Liverpool Plains",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 7763,
+            "countryCode": "AU",
+            "name": "Liverpool Plains",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-31.47024",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "146.79354",
+            "geocodeID": 7839749,
+            "toponymName": "Lockhart",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 3021,
+            "countryCode": "AU",
+            "name": "Lockhart",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-35.32193",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.55",
+            "geocodeID": 2159040,
+            "toponymName": "Maitland Municipality",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 73447,
+            "countryCode": "AU",
+            "name": "Maitland Municipality",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-32.73333",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "152.04467",
+            "geocodeID": 12047276,
+            "toponymName": "Mid-Coast",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 0,
+            "countryCode": "AU",
+            "name": "Mid-Coast",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-32.07214",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "149.76748",
+            "geocodeID": 7839751,
+            "toponymName": "Mid-Western Regional",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 23843,
+            "countryCode": "AU",
+            "name": "Mid-Western Regional",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-32.60202",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "149.58121",
+            "geocodeID": 7839752,
+            "toponymName": "Moree Plains",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 14250,
+            "countryCode": "AU",
+            "name": "Moree Plains",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-29.32131",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.24866",
+            "geocodeID": 7839753,
+            "toponymName": "Mosman",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 29983,
+            "countryCode": "AU",
+            "name": "Mosman",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.82845",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.07561",
+            "geocodeID": 7839773,
+            "toponymName": "Strathfield",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 38358,
+            "countryCode": "AU",
+            "name": "Municipality of Strathfield",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.87978",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.24706",
+            "geocodeID": 7839792,
+            "toponymName": "Woollahra",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 57677,
+            "countryCode": "AU",
+            "name": "Municipality of Woollahra",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.87901",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "144.00543",
+            "geocodeID": 12047277,
+            "toponymName": "Murray River",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 0,
+            "countryCode": "AU",
+            "name": "Murray River",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-35.23037",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "145.81256",
+            "geocodeID": 12047278,
+            "toponymName": "Murrumbidgee",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 0,
+            "countryCode": "AU",
+            "name": "Murrumbidgee",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-35.0103",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "150.69839",
+            "geocodeID": 7839754,
+            "toponymName": "Muswellbrook",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 16851,
+            "countryCode": "AU",
+            "name": "Muswellbrook",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-32.48935",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "152.71024",
+            "geocodeID": 2155855,
+            "toponymName": "Nambucca Shire",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 19529,
+            "countryCode": "AU",
+            "name": "Nambucca Shire",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-30.70829",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "149.60242",
+            "geocodeID": 7839755,
+            "toponymName": "Narrabri",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 13685,
+            "countryCode": "AU",
+            "name": "Narrabri",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-30.32779",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "146.53197",
+            "geocodeID": 7839756,
+            "toponymName": "Narrandera",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 6030,
+            "countryCode": "AU",
+            "name": "Narrandera",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-34.59107",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "147.97591",
+            "geocodeID": 7839757,
+            "toponymName": "Narromine",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 6872,
+            "countryCode": "AU",
+            "name": "Narromine",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-32.23174",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.70843",
+            "geocodeID": 7839758,
+            "toponymName": "Newcastle",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 158553,
+            "countryCode": "AU",
+            "name": "Newcastle",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-32.87628",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.21019",
+            "geocodeID": 7839759,
+            "toponymName": "North Sydney",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 69248,
+            "countryCode": "AU",
+            "name": "North Sydney Council",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.83422",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.24358",
+            "geocodeID": 12047279,
+            "toponymName": "Northern Beaches",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 0,
+            "countryCode": "AU",
+            "name": "Northern Beaches",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.69789",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "149.81795",
+            "geocodeID": 7839760,
+            "toponymName": "Oberon",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 5270,
+            "countryCode": "AU",
+            "name": "Oberon",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.84531",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "149.12294",
+            "geocodeID": 2154212,
+            "toponymName": "Orange Municipality",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 40869,
+            "countryCode": "AU",
+            "name": "Orange Municipality",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.32834",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "148.02514",
+            "geocodeID": 7839762,
+            "toponymName": "Parkes",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 15087,
+            "countryCode": "AU",
+            "name": "Parkes",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-32.82318",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.00262",
+            "geocodeID": 7839763,
+            "toponymName": "Parramatta",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 184622,
+            "countryCode": "AU",
+            "name": "Parramatta",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.81248",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "150.7",
+            "geocodeID": 2153469,
+            "toponymName": "Penrith Municipality",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 190428,
+            "countryCode": "AU",
+            "name": "Penrith Municipality",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.75",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "152.51916",
+            "geocodeID": 7839765,
+            "toponymName": "Port Macquarie-Hastings",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 76563,
+            "countryCode": "AU",
+            "name": "Port Macquarie-Hastings",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-31.42106",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.89952",
+            "geocodeID": 2152652,
+            "toponymName": "Port Stephens Shire",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 68935,
+            "countryCode": "AU",
+            "name": "Port Stephens Shire",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-32.72855",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "149.57025",
+            "geocodeID": 12047265,
+            "toponymName": "Queanbeyan-Palerang Regional",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 0,
+            "countryCode": "AU",
+            "name": "Queanbeyan-Palerang Regional",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-35.45558",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.25",
+            "geocodeID": 2152124,
+            "toponymName": "Randwick",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 142310,
+            "countryCode": "AU",
+            "name": "Randwick",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.91667",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "153.08625",
+            "geocodeID": 7839767,
+            "toponymName": "Richmond Valley",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 22749,
+            "countryCode": "AU",
+            "name": "Richmond Valley",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-29.02684",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.14342",
+            "geocodeID": 7839768,
+            "toponymName": "Rockdale",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 106712,
+            "countryCode": "AU",
+            "name": "Rockdale",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.96611",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.11205",
+            "geocodeID": 7839769,
+            "toponymName": "Ryde",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 112545,
+            "countryCode": "AU",
+            "name": "Ryde",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.80149",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "150.77119",
+            "geocodeID": 7839770,
+            "toponymName": "Shellharbour",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 67797,
+            "countryCode": "AU",
+            "name": "Shellharbour",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-34.59028",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "150.41295",
+            "geocodeID": 2149594,
+            "toponymName": "Shoalhaven Shire",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 97694,
+            "countryCode": "AU",
+            "name": "Shoalhaven Shire",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-35.14162",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "150.91872",
+            "geocodeID": 7839771,
+            "toponymName": "Singleton",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 23751,
+            "countryCode": "AU",
+            "name": "Singleton",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-32.60547",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "148.89311",
+            "geocodeID": 12047262,
+            "toponymName": "Snowy Monaro Regional",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 0,
+            "countryCode": "AU",
+            "name": "Snowy Monaro Regional",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-36.42124",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "148.09386",
+            "geocodeID": 12047271,
+            "toponymName": "Snowy Valleys",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 0,
+            "countryCode": "AU",
+            "name": "Snowy Valleys",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-35.94302",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.07712",
+            "geocodeID": 7839774,
+            "toponymName": "Sutherland Shire",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 223192,
+            "countryCode": "AU",
+            "name": "Sutherland Shire",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-34.07202",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.20844",
+            "geocodeID": 6619279,
+            "toponymName": "City of Sydney",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 191918,
+            "countryCode": "AU",
+            "name": "Sydney",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.86778",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "150.81526",
+            "geocodeID": 2147495,
+            "toponymName": "Tamworth Municipality",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 59743,
+            "countryCode": "AU",
+            "name": "Tamworth Municipality",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-30.92204",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "147.47917",
+            "geocodeID": 2147149,
+            "toponymName": "Temora Municipality",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 5995,
+            "countryCode": "AU",
+            "name": "Temora Municipality",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-34.38314",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "152.04803",
+            "geocodeID": 2147083,
+            "toponymName": "Tenterfield Municipality",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 6973,
+            "countryCode": "AU",
+            "name": "Tenterfield Municipality",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-29.06897",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "150.961",
+            "geocodeID": 7839690,
+            "toponymName": "The Hills Shire",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 176487,
+            "countryCode": "AU",
+            "name": "The Hills Shire",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.59118",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "153.34652",
+            "geocodeID": 7839369,
+            "toponymName": "Tweed",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 90114,
+            "countryCode": "AU",
+            "name": "Tweed",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-28.34991",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "150.69282",
+            "geocodeID": 7839370,
+            "toponymName": "Upper Hunter Shire",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 14650,
+            "countryCode": "AU",
+            "name": "Upper Hunter Shire",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-31.98126",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "149.53061",
+            "geocodeID": 7839775,
+            "toponymName": "Upper Lachlan Shire",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 7586,
+            "countryCode": "AU",
+            "name": "Upper Lachlan Shire",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-34.41867",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.35451",
+            "geocodeID": 7839776,
+            "toponymName": "Uralla",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 6370,
+            "countryCode": "AU",
+            "name": "Uralla",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-30.48548",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "147.35509",
+            "geocodeID": 7839778,
+            "toponymName": "Wagga Wagga",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 62149,
+            "countryCode": "AU",
+            "name": "Wagga Wagga",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-35.18587",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.81854",
+            "geocodeID": 7839780,
+            "toponymName": "Walcha",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 3087,
+            "countryCode": "AU",
+            "name": "Walcha",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-31.19757",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "148.13393",
+            "geocodeID": 7839781,
+            "toponymName": "Walgett",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 6785,
+            "countryCode": "AU",
+            "name": "Walgett",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-29.79031",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "147.72853",
+            "geocodeID": 2144547,
+            "toponymName": "Warren Shire",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 2910,
+            "countryCode": "AU",
+            "name": "Warren Shire",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-31.29549",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "149.45377",
+            "geocodeID": 7839783,
+            "toponymName": "Warrumbungle Shire",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 9778,
+            "countryCode": "AU",
+            "name": "Warrumbungle Shire",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-31.45519",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.25599",
+            "geocodeID": 7839784,
+            "toponymName": "Waverley",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 70706,
+            "countryCode": "AU",
+            "name": "Waverley Municipal Council",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.90181",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "148.01125",
+            "geocodeID": 7839785,
+            "toponymName": "Weddin",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 3711,
+            "countryCode": "AU",
+            "name": "Weddin",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.87903",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "142.33675",
+            "geocodeID": 7839787,
+            "toponymName": "Wentworth",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 6832,
+            "countryCode": "AU",
+            "name": "Wentworth",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.67106",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "148.83672",
+            "geocodeID": 12047272,
+            "toponymName": "Western Plains Regional",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 0,
+            "countryCode": "AU",
+            "name": "Western Plains Regional",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-32.47452",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "151.18782",
+            "geocodeID": 7839788,
+            "toponymName": "Willoughby",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 73155,
+            "countryCode": "AU",
+            "name": "Willoughby",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-33.80167",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "150.35486",
+            "geocodeID": 7839789,
+            "toponymName": "Wingecarribee",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 47054,
+            "countryCode": "AU",
+            "name": "Wingecarribee",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-34.49091",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "150.46265",
+            "geocodeID": 7839790,
+            "toponymName": "Wollondilly",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 46295,
+            "countryCode": "AU",
+            "name": "Wollondilly",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-34.06958",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "150.85062",
+            "geocodeID": 7839791,
+            "toponymName": "Wollongong",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 205231,
+            "countryCode": "AU",
+            "name": "Wollongong",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-34.34237",
+            "fcode": "ADM2"
+        },
+        {
+            "adminCode1": "02",
+            "longitude": "148.9724",
+            "geocodeID": 7839793,
+            "toponymName": "Yass Valley",
+            "countryId": "2077456",
+            "fcl": "A",
+            "populatitudeion": 16270,
+            "countryCode": "AU",
+            "name": "Yass Valley",
+            "fclName": "country, state, region,...",
+            "adminCodes1": {
+                "ISO3166_2": "NSW"
+            },
+            "countryName": "Australia",
+            "fcodeName": "second-order administrative division",
+            "adminName1": "New South Wales",
+            "latitude": "-34.9263",
+            "fcode": "ADM2"
+        }
+    ]
+}

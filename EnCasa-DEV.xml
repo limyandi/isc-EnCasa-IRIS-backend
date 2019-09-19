@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Export generator="IRIS" version="26" zv="IRIS for Windows (x86-64) 2019.1 (Build 510U)" ts="2019-09-18 16:17:11">
+<Export generator="IRIS" version="26" zv="IRIS for Windows (x86-64) 2019.1 (Build 510U)" ts="2019-09-19 11:17:05">
 <Class name="DAO.BaseDeliveryPickup">
 <Abstract>1</Abstract>
 <TimeChanged>65262,45671.384184</TimeChanged>
@@ -1038,7 +1038,131 @@
 </Class>
 
 
-<Project name="EnCasa" LastModified="2019-09-18 16:17:04.785485">
+<Class name="DTL.ConvertDeliveryItemToMessage">
+<Super>Ens.DataTransformDTL</Super>
+<TimeChanged>65269,81347.23524</TimeChanged>
+<TimeCreated>65269,38939.077063</TimeCreated>
+<DependsOn>DAO.Delivery,Messages.SendEmailRequest</DependsOn>
+
+<Parameter name="IGNOREMISSINGSOURCE">
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="REPORTERRORS">
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="TREATEMPTYREPEATINGFIELDASNULL">
+<Default>0</Default>
+</Parameter>
+
+<XData name="DTL">
+<XMLNamespace>http://www.intersystems.com/dtl</XMLNamespace>
+<Data><![CDATA[
+<transform sourceClass='DAO.Delivery' targetClass='Messages.SendEmailRequest' create='new' language='objectscript' >
+<annotation>Convert the Delivery Item to be able to use it for messaging</annotation>
+<assign value='source.customer.email' property='target.destinations' action='append' />
+<assign value='source.ID' property='target.textBody' action='set' key='"ID"' />
+<assign value='$ZDATE(source.date)' property='target.textBody' action='set' key='"Date Available"' />
+<assign value='$ZTIME(source.time)' property='target.textBody' action='set' key='"Time"' />
+<assign value='$ZTIME(source.timeTo)' property='target.textBody' action='set' key='"Time Available Until"' />
+<assign value='source.pickupAddress' property='target.textBody' action='set' key='"Pickup Address"' />
+<assign value='source.deliveryAddress' property='target.textBody' action='set' key='"Delivery Address"' />
+<assign value='"Your delivery with ID" _ source.ID' property='target.subject' action='set' />
+</transform>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="DTL.ConvertJobDeliveryToEmail">
+<Super>Ens.DataTransformDTL</Super>
+<TimeChanged>65269,81893.157407</TimeChanged>
+<TimeCreated>65269,59766.568588</TimeCreated>
+<DependsOn>DAO.Job,Messages.SendEmailRequest</DependsOn>
+
+<Parameter name="IGNOREMISSINGSOURCE">
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="REPORTERRORS">
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="TREATEMPTYREPEATINGFIELDASNULL">
+<Default>0</Default>
+</Parameter>
+
+<XData name="DTL">
+<XMLNamespace>http://www.intersystems.com/dtl</XMLNamespace>
+<Data><![CDATA[
+<transform sourceClass='DAO.Job' targetClass='Messages.SendEmailRequest' create='new' language='objectscript' >
+<assign value='source.driver.email' property='target.destinations' action='append' />
+<trace value='"Delivery ID:  " _ source.delivery.ID' disabled='1' />
+<trace value='"Delivery Exists " _ (source.delivery &apos;= "")' disabled='1' />
+<if condition='(source.delivery &apos;= "") = 1' >
+<annotation>Check if Source.Delivery is empty</annotation>
+<true>
+<trace value='"I get in to delivery if statement"' />
+<assign value='""' property='target.textBody' action='set' key='"Delivery Details"' />
+<assign value='source.delivery.ID' property='target.textBody' action='set' key='"ID"' />
+<assign value='source.delivery.pickupAddress' property='target.textBody' action='set' key='"Pickup Address"' />
+<assign value='source.delivery.deliveryAddress' property='target.textBody' action='set' key='"Delivery Address"' />
+<assign value='$ZDATE(source.delivery.date) _ $ZTIME(source.delivery.time) _ "-" _ $ZTIME(source.delivery.timeTo)' property='target.textBody' action='set' key='"Customer Availability Date"' />
+</true>
+<false>
+<assign value='""' property='target.textBody' action='set' key='"Pickup Details"' />
+<assign value='$ZDATE(source.pickup.date) _ $ZTIME(source.pickup.time) _ "-" _ $ZTIME(source.pickup.timeTo)' property='target.textBody' action='set' key='"Customer Availability Date"' />
+<assign value='source.pickup.ID' property='target.textBody' action='set' key='"ID"' />
+<assign value='source.pickup.pickupAddress' property='target.textBody' action='set' key='"Pickup Address"' />
+</false>
+</if>
+<assign value='source.ETA' property='target.textBody' action='set' key='"Your Indicated Arrival Time"' />
+<trace value='"Pickup Address After Transformation " _ target.textBody.GetAt("Pickup Address")' disabled='1' />
+<assign value='"Your Job ID: " _ source.%Id()' property='target.subject' action='set' />
+</transform>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="DTL.ConvertPickupItemToMessage">
+<Super>Ens.DataTransformDTL</Super>
+<TimeChanged>65269,58933.204507</TimeChanged>
+<TimeCreated>65269,38939.077063</TimeCreated>
+<DependsOn>DAO.Pickup,Messages.SendEmailRequest</DependsOn>
+
+<Parameter name="IGNOREMISSINGSOURCE">
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="REPORTERRORS">
+<Default>1</Default>
+</Parameter>
+
+<Parameter name="TREATEMPTYREPEATINGFIELDASNULL">
+<Default>0</Default>
+</Parameter>
+
+<XData name="DTL">
+<XMLNamespace>http://www.intersystems.com/dtl</XMLNamespace>
+<Data><![CDATA[
+<transform sourceClass='DAO.Pickup' targetClass='Messages.SendEmailRequest' create='new' language='objectscript' >
+<annotation>Convert the Delivery Item to be able to use it for messaging</annotation>
+<assign value='source.customer.email' property='target.destinations' action='append' />
+<assign value='source.ID' property='target.textBody' action='set' key='"ID"' />
+<assign value='$ZDATE(source.date)' property='target.textBody' action='set' key='"Date"' />
+<assign value='$ZTIME(source.time)' property='target.textBody' action='set' key='"Time"' />
+<assign value='$ZTIME(source.timeTo)' property='target.textBody' action='set' key='"Time Available Until"' />
+<assign value='source.pickupAddress' property='target.textBody' action='set' key='"Pickup Address"' />
+<assign value='"Your pickup with ID" _ source.ID' property='target.subject' action='set' />
+</transform>
+]]></Data>
+</XData>
+</Class>
+
+
+<Project name="EnCasa" LastModified="2019-09-19 11:16:50.798044">
   <Items>
     <ProjectItem name="DAO.BaseDeliveryPickup" type="CLS"></ProjectItem>
     <ProjectItem name="DAO.Community" type="CLS"></ProjectItem>
@@ -1048,26 +1172,36 @@
     <ProjectItem name="DAO.Job" type="CLS"></ProjectItem>
     <ProjectItem name="DAO.Pickup" type="CLS"></ProjectItem>
     <ProjectItem name="DAO.User" type="CLS"></ProjectItem>
+    <ProjectItem name="DTL.ConvertDeliveryItemToMessage" type="CLS"></ProjectItem>
+    <ProjectItem name="DTL.ConvertJobDeliveryToEmail" type="CLS"></ProjectItem>
+    <ProjectItem name="DTL.ConvertPickupItemToMessage" type="CLS"></ProjectItem>
     <ProjectItem name="Helper.Availabilities" type="CLS"></ProjectItem>
     <ProjectItem name="Helper.HashedPass" type="CLS"></ProjectItem>
     <ProjectItem name="Helper.OpenToClose" type="CLS"></ProjectItem>
     <ProjectItem name="Helper.OutboundAdapter" type="CLS"></ProjectItem>
     <ProjectItem name="Logistics.CommunityLogisticsProject" type="CLS"></ProjectItem>
+    <ProjectItem name="Messages.NotificationRequest" type="CLS"></ProjectItem>
     <ProjectItem name="Messages.SendEmailRequest" type="CLS"></ProjectItem>
+    <ProjectItem name="Messages.SendEmailResponse" type="CLS"></ProjectItem>
     <ProjectItem name="Messages.SendSMSRequest" type="CLS"></ProjectItem>
     <ProjectItem name="Operation.SendEmailNotification" type="CLS"></ProjectItem>
     <ProjectItem name="Operation.SendSMSNotification" type="CLS"></ProjectItem>
     <ProjectItem name="Process.DetermineDeliverySendNotification" type="CLS"></ProjectItem>
     <ProjectItem name="Process.DetermineJobSendNotification" type="CLS"></ProjectItem>
     <ProjectItem name="REST.Interoperability.NotificationRESTService" type="CLS"></ProjectItem>
-    <ProjectItem name="REST.Logistics" type="PKG"></ProjectItem>
+    <ProjectItem name="REST.Logistics.impl" type="CLS"></ProjectItem>
+    <ProjectItem name="REST.Logistics.spec" type="CLS"></ProjectItem>
+    <ProjectItem name="Rules.CalcNotifSleepTime" type="CLS"></ProjectItem>
+    <ProjectItem name="Rules.EmailContent" type="CLS"></ProjectItem>
+    <ProjectItem name="Rules.JobEmailContent" type="CLS"></ProjectItem>
+    <ProjectItem name="Rules.SetJobMessageSubject" type="CLS"></ProjectItem>
+    <ProjectItem name="Rules.SetMessageSubject" type="CLS"></ProjectItem>
     <ProjectItem name="Service.MonitorAddedDelivery" type="CLS"></ProjectItem>
     <ProjectItem name="Service.MonitorAddedJob" type="CLS"></ProjectItem>
     <ProjectItem name="Service.MonitorAddedPickup" type="CLS"></ProjectItem>
     <ProjectItem name="Test.Generator" type="CLS"></ProjectItem>
     <ProjectItem name="Utils.ObjectGenerator" type="CLS"></ProjectItem>
     <ProjectItem name="Utils.Populate" type="CLS"></ProjectItem>
-    <ProjectItem name="Messages.NotificationRequest" type="CLS"></ProjectItem>
   </Items>
 </Project>
 
@@ -1422,6 +1556,46 @@ Also, any extra <var>pData</var> arguments you supply will be assigned to the la
 <Attribute>textBody</Attribute>
 <Structure>subnode</Structure>
 <Subscript>"Messages.SendEmailRequest.textBody"</Subscript>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="Messages.SendEmailResponse">
+<Language>objectscript</Language>
+<Super>Ens.Response</Super>
+<TimeChanged>65267,39599.420429</TimeChanged>
+<TimeCreated>65267,39595.122784</TimeCreated>
+
+<Property name="destinations">
+<Type>%String</Type>
+<Collection>list</Collection>
+</Property>
+
+<Property name="textBody">
+<Type>%String</Type>
+<Parameter name="MAXLEN" value="2000"/>
+</Property>
+
+<Property name="subject">
+<Type>%String</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DefaultData>SendEmailResponseDefaultData</DefaultData>
+<Data name="SendEmailResponseDefaultData">
+<Structure>listnode</Structure>
+<Subscript>"SendEmailResponse"</Subscript>
+<Value name="1">
+<Value>destinations</Value>
+</Value>
+<Value name="2">
+<Value>textBody</Value>
+</Value>
+<Value name="3">
+<Value>subject</Value>
+</Value>
 </Data>
 </Storage>
 </Class>
@@ -2001,8 +2175,6 @@ SMS</Description>
 ]]></Content>
 </UDLText>
 </Class>
-
-
 
 
 <Class name="REST.Logistics.impl">
@@ -4245,9 +4417,202 @@ Populate communities</Description>
 </Class>
 
 
+<Class name="Rules.CalcNotifSleepTime">
+<Description>
+</Description>
+<Super>Ens.Rule.Definition</Super>
+<TimeChanged>65269,40476.181854</TimeChanged>
+<TimeCreated>65268,60599.757349</TimeCreated>
+
+<Parameter name="RuleAssistClass">
+<Default>Ens.Rule.GeneralBusinessRuleAssist</Default>
+</Parameter>
+
+<XData name="RuleDefinition">
+<XMLNamespace>http://www.intersystems.com/rule</XMLNamespace>
+<Data><![CDATA[
+<ruleDefinition alias="Calculate Sleep Time" context="Process.DetermineDeliverySendNotification.Context" production="">
+<ruleSet name="" effectiveBegin="" effectiveEnd="">
+<rule name="Call Rule (only 3 notification)" disabled="false">
+<when condition="NumOfCall = 0">
+<assign property="DateTimeDifference" value="0.5 * DateTimeDifference"></assign>
+</when>
+<when condition="NumOfCall = 1">
+<assign property="DateTimeDifference" value="0.75 * DateTimeDifference"></assign>
+</when>
+<when condition="NumOfCall = 2">
+<assign property="DateTimeDifference" value="0.9 * DateTimeDifference"></assign>
+</when>
+<otherwise>
+<assign property="DateTimeDifference" value="1 * DateTimeDifference"></assign>
+</otherwise>
+</rule>
+<trace value="DateTimeDifference"></trace>
+<return>DateTimeDifference</return>
+</ruleSet>
+</ruleDefinition>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="Rules.EmailContent">
+<Description>
+To determine email content based on different time</Description>
+<Super>Ens.Rule.Definition</Super>
+<TimeChanged>65267,62024.64181</TimeChanged>
+<TimeCreated>65267,54222.917443</TimeCreated>
+
+<Parameter name="RuleAssistClass">
+<Default>Ens.Rule.GeneralBusinessRuleAssist</Default>
+</Parameter>
+
+<XData name="RuleDefinition">
+<XMLNamespace>http://www.intersystems.com/rule</XMLNamespace>
+<Data><![CDATA[
+<ruleDefinition alias="" context="Process.DetermineDeliveryPickupStatus.Context" production="">
+<ruleSet name="SetEmailContent" effectiveBegin="" effectiveEnd="">
+<rule name="DeliveryIsAccepted" disabled="false">
+<when condition="Delivery.status = 1">
+<assign property="SendEmailRequest.textBody" value="&quot;Your delivery has been accepted!&quot;"></assign>
+<assign property="SendEmailRequest.subject" value="&quot;Delivery Status: Accepted&quot;"></assign>
+<return>SendEmailRequest</return>
+</when>
+</rule>
+<rule name="DeliveryIsNotAccepted" disabled="false">
+<when condition="Delivery.status = 0">
+<assign property="SendEmailRequest.subject" value="&quot;Delivery Status&quot;"></assign>
+<assign property="SendEmailRequest.textBody" value="&quot;Your delivery has been created, no one has accepted it yet at the moment&quot;"></assign>
+<return>SendEmailRequest</return>
+</when>
+</rule>
+</ruleSet>
+</ruleDefinition>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="Rules.JobEmailContent">
+<Description>
+To determine email content based on different time</Description>
+<Super>Ens.Rule.Definition</Super>
+<TimeChanged>65268,42040.094116</TimeChanged>
+<TimeCreated>65268,37733.433676</TimeCreated>
+
+<Parameter name="RuleAssistClass">
+<Default>Ens.Rule.GeneralBusinessRuleAssist</Default>
+</Parameter>
+
+<XData name="RuleDefinition">
+<XMLNamespace>http://www.intersystems.com/rule</XMLNamespace>
+<Data><![CDATA[
+<ruleDefinition alias="" context="Process.DetermineJobEmailContent.Context" production="">
+<ruleSet name="SetEmailContent" effectiveBegin="" effectiveEnd="">
+<rule name="DeliveryOrPickup" disabled="false">
+<when condition="Job.delivery">
+<assign property="jobType" value="&quot;delivery&quot;"></assign>
+</when>
+<when condition="Job.pickup">
+<assign property="jobType" value="&quot;pickup&quot;"></assign>
+</when>
+</rule>
+<rule name="JobIsNotDone" disabled="false">
+<when condition="Job.status = 0">
+<rule name="CheckTime" disabled="false">
+</rule>
+<assign property="SendEmailRequest.subject" value="&quot;Job Accepted!&quot;"></assign>
+<assign property="SendEmailRequest.textBody" value="&quot;You just accepted a job!&quot;"></assign>
+<return>SendEmailRequest</return>
+</when>
+</rule>
+<rule name="JobIsDone" disabled="false">
+<when condition="Job.status = 1">
+<assign property="SendEmailRequest.textBody" value="&quot;You finished a job!&quot;"></assign>
+<assign property="SendEmailRequest.subject" value="&quot;Delivery Status: Accepted&quot;"></assign>
+<return>SendEmailRequest</return>
+</when>
+</rule>
+</ruleSet>
+</ruleDefinition>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="Rules.SetJobMessageSubject">
+<Description>
+</Description>
+<Super>Ens.Rule.Definition</Super>
+<TimeChanged>65270,50443.198333</TimeChanged>
+<TimeCreated>65270,49264.447812</TimeCreated>
+
+<Parameter name="RuleAssistClass">
+<Default>Ens.Rule.GeneralBusinessRuleAssist</Default>
+</Parameter>
+
+<XData name="RuleDefinition">
+<XMLNamespace>http://www.intersystems.com/rule</XMLNamespace>
+<Data><![CDATA[
+<ruleDefinition alias="" context="Process.DetermineDeliverySendNotification.Context" production="">
+<ruleSet name="Set Message Subject" effectiveBegin="" effectiveEnd="">
+<rule name="Depend Num of Call" disabled="false">
+<when condition="NumOfCall = 0">
+<assign property="SendEmailRequest.subject" value="&quot;Confirmation: You just accepted a new job. Type:&quot;_JobType_&quot; with ID: &quot;_Job.ID"></assign>
+</when>
+<when condition="NumOfCall &gt;= 1">
+<assign property="SendEmailRequest.subject" value="&quot;Reminder: You have an upcoming accepted job. Type: &quot; _ JobType _ &quot; with ID: &quot; _ Job.ID"></assign>
+</when>
+<otherwise>
+<assign property="SendEmailRequest.subject" value="&quot;Something went wrong! Please contact our admin regarding your job acceptance! JOB ID:&quot; _ Job.ID"></assign>
+</otherwise>
+</rule>
+<return>SendEmailRequest.subject</return>
+</ruleSet>
+</ruleDefinition>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="Rules.SetMessageSubject">
+<Description>
+</Description>
+<Super>Ens.Rule.Definition</Super>
+<TimeChanged>65270,48222.571714</TimeChanged>
+<TimeCreated>65270,46598.651764</TimeCreated>
+
+<Parameter name="RuleAssistClass">
+<Default>Ens.Rule.GeneralBusinessRuleAssist</Default>
+</Parameter>
+
+<XData name="RuleDefinition">
+<XMLNamespace>http://www.intersystems.com/rule</XMLNamespace>
+<Data><![CDATA[
+<ruleDefinition alias="" context="Process.DetermineDeliverySendNotification.Context" production="">
+<ruleSet name="Set Message Subject" effectiveBegin="" effectiveEnd="">
+<rule name="Depend Num of Call" disabled="false">
+<when condition="NumOfCall = 0">
+<assign property="SendEmailRequest.subject" value="&quot;Confirmation: You just posted a new &quot; _ type _ &quot; with ID: &quot; _ Delivery.ID"></assign>
+</when>
+<when condition="NumOfCall &gt;= 1">
+<assign property="SendEmailRequest.subject" value="&quot;Notification: Your request with ID: &quot;_Delivery.ID_&quot; with availability of : &quot;_Delivery.date_&quot; &quot;_Delivery.time_&quot;-&quot;_Delivery.timeTo_&quot; has not been accepted by any driver.&quot;"></assign>
+</when>
+<otherwise>
+<assign property="SendEmailRequest.subject" value="&quot;Something went wrong! Please contact our admin regarding your delivery request! &quot; _ Delivery.ID"></assign>
+</otherwise>
+</rule>
+<return>SendEmailRequest.subject</return>
+</ruleSet>
+</ruleDefinition>
+]]></Data>
+</XData>
+</Class>
+
+
 <Class name="Service.MonitorAddedDelivery">
 <Super>Ens.BusinessService</Super>
-<TimeChanged>65274,58363.105152</TimeChanged>
+<TimeChanged>65274,58887.486233</TimeChanged>
 <TimeCreated>65267,50182.390755</TimeCreated>
 
 <UDLText name="T">
@@ -4258,7 +4623,7 @@ Populate communities</Description>
 </UDLText>
 
 <Method name="OnProcessInput">
-<FormalSpec>pInput:Messages.SendEmailRequest,*pOutput:%RegisteredObject</FormalSpec>
+<FormalSpec>pInput:Messages.NotificationRequest,*pOutput:%RegisteredObject</FormalSpec>
 <ReturnType>%Status</ReturnType>
 <Implementation><![CDATA[
 	$$$TRACE(pInput.ID)
