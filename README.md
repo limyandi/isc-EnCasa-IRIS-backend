@@ -40,7 +40,7 @@ Credentials: {Create your own Credentials with your GMAIL account} (Navigate to 
 Server Host Name: smtp.gmail.com
 Server Port: 465
 ```
-
+9. Change the Additional Configuration to the same gmail account's email that you use in step 7.
 
 ### Testing
 
