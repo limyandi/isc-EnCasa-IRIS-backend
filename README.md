@@ -16,7 +16,7 @@ EnCasa (Logistics Community Project) Built with InterSystems IRIS
 3. 
 
 =======
-2. Go to IRIS Management Portal and create a new Web Application `System Administration=>Security=>Applications=>Web Applications=>Create New Web Applications`. Call it '/logistics' (choose the namespace that you used to import 'EnCasa-Dev.xml' file), and for the enable section, choose REST Radio Button and Put in REST.logistics.disp as the dispatch class (keep all of the rest options).
+2. Go to IRIS Management Portal and create a new Web Application `System Administration=>Security=>Applications=>Web Applications=>Create New Web Applications`. Call it '/logistics' (choose the namespace that you used to import 'EnCasa-Dev.xml' file), and for the enable section, choose REST Radio Button and Put in REST.Logistics.disp as the dispatch class (keep all of the rest options).
 3. Create another web application, call it '/fileserver', (choose the namespace that you used to import the 'EnCasa-FileServer.xml' file), and for the enable section, choose REST Radio Button and Put in Fileserver.Broker as the dispatch class (keep all of the rest options).
 4. Populate all the new Communities with the following POST Request:
 {{YOUR_IRIS_INSTANCE_SERVER}}/logistics/communities
