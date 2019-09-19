@@ -2,22 +2,45 @@
 
 EnCasa (Logistics Community Project) Built with InterSystems IRIS
 
-## Getting Started
-
-1. To Deploy the project, open `InterSystems Studio` and import both cloned XML files by navigating to `Tools->Import Local`. N.B. Create one namespace for each cloned XML data.
-2. Go to IRIS Management Portal and create a new Web Application `System Administration=>Security=>Applications=>Web Applications=>Create New Web Applications`. Name it anything you like, For the enable, choose REST Radio Button and Put in REST.logistics.disp as the dispatch class (keep all of the rest options).
-3. 
-
-
-
 ### Prerequisites
 
 ```
 1. InterSystems Studio (https://download.intersystems.com/download/login.csp)
-2. Populate all NSW Communities with the following POST Request:
-{{YOUR_IRIS_INSTANCE_SERVER}}/logistics/communities
 ```
+
+## Getting Started
+
+1. To Deploy the project, open `InterSystems Studio` and import both cloned XML files by navigating to `Tools->Import Local`. N.B. Create one namespace for each cloned XML data.
+<<<<<<< HEAD
+2. Go to IRIS Management Portal and create a new Web Application `System Administration=>Security=>Applications=>Web Applications=>Create New Web Applications`. Name it anything you like, For the enable, choose REST Radio Button and Put in REST.logistics.disp as the dispatch class (keep all of the rest options).
+3. 
+
+=======
+2. Go to IRIS Management Portal and create a new Web Application `System Administration=>Security=>Applications=>Web Applications=>Create New Web Applications`. Call it '/logistics' (choose the namespace that you used to import 'EnCasa-Dev.xml' file), and for the enable section, choose REST Radio Button and Put in REST.logistics.disp as the dispatch class (keep all of the rest options).
+3. Create another web application, call it '/fileserver', (choose the namespace that you used to import the 'EnCasa-FileServer.xml' file), and for the enable section, choose REST Radio Button and Put in Fileserver.Broker as the dispatch class (keep all of the rest options).
+4. Populate all the new Communities with the following POST Request:
+{{YOUR_IRIS_INSTANCE_SERVER}}/logistics/communities
 The Body Request: [communities.json](communities.json)
+>>>>>>> 92a5f0c4a09b4468361cf508d8d3a283c6884363
+
+OPTIONAL:
+To Use the Email Utility, you will have to go to IRIS management portal and set up the credentials.
+
+
+5. Once you are in Management Portal, navigate to `Interoperability=>Configure=>Production`. Or, if nothing exists, navigate to `Interoperability=>List=>Productions` and choose Logistics.CommunityLogisticsProject and open it. 
+6. You should see the SendEmailNotification below Operations section, click that, and go to settings. 
+7. Enable the settings, and then fill in:
+```
+SMTP Server: smtp.gmail.com
+SMTP Port: 465
+Credentials: {Create your own Credentials with your GMAIL account} (Navigate to "Interoperability=>Configure=>Credentials")
+```
+8. Create a SSL Configuration, name it anything. (Go back to Management Portal Homepage, Navigate to `System Administration=>Security=>SSL/TLS Configurations`. Test it (on the top left corner beside cancel button), putting in:
+```
+Server Host Name: smtp.gmail.com
+Server Port: 465
+```
+
 
 ### Testing
 
