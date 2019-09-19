@@ -10,11 +10,10 @@ EnCasa (Logistics Community Project) Built with InterSystems IRIS
 
 ## Getting Started
 
-1. To Deploy the project, open `InterSystems Studio` and import both cloned XML files by navigating to `Tools->Import Local`. N.B. Create one namespace for each cloned XML data
-2. Create a new IRIS Instance and then create a new namespace
-3. Go to IRIS Management Portal and create a new Web Application `System Administration=>Security=>Applications=>Web Applications=>Create New Web Applications`. Call it '/logistics' (choose the namespace that you used to import 'EnCasa-Dev.xml' file), and for the enable section, choose REST Radio Button and Put in REST.logistics.disp as the dispatch class (keep all of the rest options).
-4. Create another web application, call it '/fileserver', (choose the namespace that you used to import the 'EnCasa-FileServer.xml' file), and for the enable section, choose REST Radio Button and Put in Fileserver.Broker as the dispatch class (keep all of the rest options).
-5. Populate all the new Communities with the following POST Request:
+1. To Deploy the project, open `InterSystems Studio` and import both cloned XML files by navigating to `Tools->Import Local`. N.B. Create one namespace for each cloned XML data.
+2. Go to IRIS Management Portal and create a new Web Application `System Administration=>Security=>Applications=>Web Applications=>Create New Web Applications`. Call it '/logistics' (choose the namespace that you used to import 'EnCasa-Dev.xml' file), and for the enable section, choose REST Radio Button and Put in REST.logistics.disp as the dispatch class (keep all of the rest options).
+3. Create another web application, call it '/fileserver', (choose the namespace that you used to import the 'EnCasa-FileServer.xml' file), and for the enable section, choose REST Radio Button and Put in Fileserver.Broker as the dispatch class (keep all of the rest options).
+4. Populate all the new Communities with the following POST Request:
 {{YOUR_IRIS_INSTANCE_SERVER}}/logistics/communities
 The Body Request: [communities.json](communities.json)
 
